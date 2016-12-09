@@ -1,0 +1,59 @@
+
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> Bagel Day Scheduling Testing </title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	</head>
+
+	<body>
+		<div class = "Pagename">
+			<h1> Availibility Page: </h1>
+		</div>
+
+		<div class = "Name/ATTU">
+			<form>
+				Name: <input type = "text" name = "name">
+				ATTU ID: <input type = "text" name = "ATTU">
+			</form>
+		</div>
+
+		<div class = "Date">
+			Date:
+			<select name = "month">
+				<option> Month </option>
+				<option> </option>
+				<option> January </option>
+				<option> February </option>
+				<option> March </option>
+				<option> April </option>
+				<option> May </option>
+				<option> June </option>
+				<option> July </option>
+				<option> August </option>
+				<option> September </option>
+				<option> October </option>
+				<option> November </option>
+				<option> December </option>
+			</select>
+		</div>
+
+		<div class = "Shift">
+			<h4> Shift: </h4>
+			<form>
+				<input type = "checkbox" id="inlineCheckbox1" name = "shift_setup"> Setup <br>
+				<input type = "checkbox" id="inlineCheckbox1" name = "shift_8:30"> 8:30 - 9:00 <br>
+				<input type = "checkbox" id="inlineCheckbox1" name = "shift_9:00"> 9:00 - 9:30 <br>
+				<input type = "checkbox" id="inlineCheckbox1" name = "shift_9:30"> 9:30 - 10:00 <br>
+				<input type = "checkbox" id="inlineCheckbox1" name = "shift_10:00"> 10:00 - 10:30 <br>
+				<input type = "checkbox" id="inlineCheckbox1" name = "shift_clean_up"> Clean up <br>
+			</form>
+		</div>
+
+		<button class = "btn btn-success" name = "submit"> Submit </button>
+		<button class = "btn btn-danger" name = "clear"> Clear </button>
+		<button class = "btn btn-warning" name = "cancel"> Cancel </button>
+
+	</body>
+</html>

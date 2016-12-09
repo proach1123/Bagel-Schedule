@@ -1,0 +1,213 @@
+body {
+	color: #000000;
+	background-color: #FFFFFF;
+	height: 100vh;
+	width: 100vw;
+	font-family: 'Abel', sans-serif;
+	margin: 0;
+	padding: 0;
+}
+
+#cover {
+	height: 26.3vmax;
+	top: -1.05vmax;
+	position: relative;
+	width: 100vmax;
+	background: url("../images/bagel-cover.jpg");
+	background-size: cover;
+	background-attachment: scroll;
+}
+
+.coverContent{
+	margin: 0 auto;
+	text-align: center;
+	width: 100vmax;
+}
+
+h1 {
+	color: #FFFFFF;
+	font-family: 'Amatic SC', cursive;
+	text-align: center;
+	font-size: 13.15vmax;
+	position: relative;
+	top: 3.33vmax;
+	
+}
+
+h3 {
+	color: #FFFFFF;
+	font-family: 'Raleway', sans-serif;
+	text-align: center;
+	font-size: 2.63vmax;
+	position: relative;
+	top: 1.45vmax;
+}
+
+#navigate {
+	background-color: #404040;
+	position: relative;
+	top: -1.1vmax;
+	height: 2.63vmax;
+	width: 100vmax;
+}
+
+#navigate ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+#navigate li{
+	display: inline;
+	margin: 0;
+	padding: 0;
+	
+}
+
+.menuLink {
+	color: #FFFFFF;
+	font-size: 1.06vmax;
+	font-weight: 300;
+	padding-top: 0.48vmax;
+	padding-bottom: 0.88vmax;
+	padding-left: 1.1vmax;
+	padding-right: 0.83vmax;
+	margin: 0;
+	position: relative;
+	left: 91vmax;
+	display: inline;
+}
+
+.homeLink{
+	color: #FFFFFF;
+	font-size: 1.06vmax;
+	font-weight: 300;
+	padding-top: 0.48vmax;
+	padding-bottom: 0.88vmax;
+	padding-left: 1.1vmax;
+	padding-right: 0.83vmax;
+	margin: 0;
+	position: relative;
+	left: 82vmax;
+	display: inline;
+}
+
+.attLogo {
+	height: 2.63vmax;
+	width: auto;
+	position: relative;
+	left: -0.54vmax;
+	margin: 0;
+	margin-top: 0;
+	padding: 0;
+}
+
+.activeNavigation{
+	background-color: #4D4D4D;
+	color: #80DFFF;
+}
+
+.onNavigation {
+	background-color: #4D4D4D;
+}
+
+#sidebar {
+	background-color: #4D4D4D;
+	background-attachment: fixed;
+	color: #FFFFFF;
+	position: absolute;
+	top: 28.8vmax;
+	left: 79.7vmax;
+	height: 100vmin;
+	width: 18.88vmax;
+	float: right;
+	clear: both;
+	z-index: 1;
+}
+
+#sidebar label{
+	font-size: 1.05vmax;
+	padding: 5.2% 5.2%;
+}
+
+#sidebar ul{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+#sidebar li{
+	font-size: 0.8vmax;
+	padding: 5.2% 1.31%;
+}
+
+#sidebar hr{
+	width: 80%;
+	height: 1px;
+	display: block;
+	border: 0;
+	border-top: 1px solid #FFFFFF;
+	padding: 0;
+	margin: 0;
+	margin-top: 20px;
+}
+
+.availabilityLink, .cancelShiftLink, .scheduleLink {
+	color: #80DFFF;
+	padding: 15px 25px;
+	margin: 0;
+}
+
+.activeSidebar, .onSidebar {
+	background-color: #404040;
+}
+
+#scheduleTables {
+	
+	width: 66vmax;
+	margin: 1.05vmax 5.25vmax;
+
+}
+
+table {
+	font-size: 1.05vmax;
+	margin: 0.525vmax 1.05vmax;
+}
+
+td, th {
+	margin: 2.62vmax auto;
+	padding: 1.05vmax 1.05vmax;
+}
+
+td, .shiftHeader {
+	height: 2.1px;
+	width: 10%;
+}
+
+.volunteerTopHeader, .volunteerHeader {
+	height: 2.1px;
+	width: 20%;
+}
+
+.shiftHeader{
+	text-align: center;
+}
+
+tr:nth-child(even) {
+	background-color: #E6E6E6;
+}
+
+tr:nth-child(odd){
+	background-color: #F2F2F2;
+}
+
+.volunteerTopHeader, .shiftHeader {
+	background-color: #80DFFF;
+}
+
+.tableLabel{
+	color: #33CCFF;
+	font-size: 2.62vmax;
+	padding: 0.525vmax 0.525vmax;
+	margin-left: -1.575vmax;
+}

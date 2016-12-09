@@ -1,0 +1,246 @@
+body {
+	color: #000000;
+	background-color: #FFFFFF;
+	height: 100%;
+	font-family: 'Abel', sans-serif;
+	margin: 0;
+	padding: 0;
+}
+
+#cover {
+	height: 500px;
+	top: -20px;
+	position: relative;
+	width: 100%;
+	background: url("../images/bagel-cover.jpg");
+	background-size: cover;
+	background-attachment: scroll;
+}
+
+.coverContent{
+	margin: 0 auto;
+	text-align: center;
+	width: 70%;
+}
+
+h1 {
+	color: #FFFFFF;
+	font-family: 'Amatic SC', cursive;
+	text-align: center;
+	font-size: 250px;
+	line-height: 100px;
+	position: relative;
+	top: 150px;
+}
+
+h3 {
+	color: #FFFFFF;
+	font-family: 'Raleway', sans-serif;
+	text-align: center;
+	font-size: 50px;
+	position: relative;
+	top: 200px;
+}
+
+h4 {
+	font-size: 30px;
+	text-align: center;
+}
+
+h5 {
+	font-size: 25px;
+	text-align: center;
+	position: relative;
+}
+
+p {
+	font-size: 18.64px;
+	text-align: center;
+	position: relative;
+}
+
+#navigate {
+	background-color: #404040;
+	position: relative;
+	top: -20px;
+}
+
+#navigate ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+#navigate li{
+	display: inline;
+	margin: 0;
+	padding: 0;
+	
+}
+
+.menuLink {
+	color: #FFFFFF;
+	font-size: 20px;
+	font-weight: 300;
+	padding-top: 9px;
+	padding-bottom: 16px;
+	padding-left: 20px;
+	padding-right: 20px;
+	margin: 0;
+	position: relative;
+	left: 92vw;
+	display: inline;
+}
+
+.homeLink{
+	color: #FFFFFF;
+	font-size: 20px;
+	font-weight: 300;
+	padding-top: 9px;
+	padding-bottom: 16px;
+	padding-left: 20px;
+	padding-right: 15px;
+	margin: 0;
+	position: relative;
+	left: 83vw;
+	display: inline;
+}
+
+.attLogo {
+	height: 50px;
+	width: auto;
+	position: relative;
+	left: -10px;
+	margin: 0;
+	margin-top: 0;
+	padding: 0;
+}
+
+.activeNavigation{
+	background-color: #4D4D4D;
+	color: #80DFFF;
+}
+
+.onNavigation {
+	background-color: #4D4D4D;
+}
+
+#sidebar {
+	background-color: #4D4D4D;
+	background-attachment: fixed;
+	color: #FFFFFF;
+	position: absolute;
+	top: 550px;
+	left: 1530px;
+	height: 100vh;
+	width: 20%;
+	float: right;
+	clear: both;
+	z-index: 1;
+	
+}
+
+#sidebar label {
+	font-size: 20px;
+	padding: 10px 10px;
+}
+
+#sidebar ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+#sidebar li{
+	font-size: 15px;
+	padding: 10px 25px;
+}
+
+#sidebar hr {
+	width: 80%;
+	height: 1px;
+	display: block;
+	border: 0;
+	border-top: 1px solid #FFFFFF;
+	padding: 0;
+	margin: 0;
+	margin-top: 20px;
+}
+
+.availabilityLink, .cancelShiftLink, .scheduleLink {
+	color: #80DFFF;
+	padding: 15px 25px;
+	margin: 0;
+}
+
+.activeSidebar, .onSidebar {
+	background-color: #404040;
+}
+
+h4 {
+	text-align: left;
+	margin: 30px 20px;
+}
+
+.dropdown {
+	position: relative;
+	left: -170px;
+}
+
+p{
+	font-size: 30px;
+}
+
+#availabilityTable {
+	height: auto;
+	width: 70%;
+	margin: 40px 100px;
+	position: relative;
+	z-index: 0;
+}
+
+table {
+	font-size: 20px;
+	margin: 10px 20px;
+	margin-bottom: 200px;
+}
+
+td, th {
+	margin: 50px auto;
+	padding: 40px 20px;
+}
+
+td, .shiftHeader {
+	text-align: center;
+	height: 40px;
+	width: 10%;
+	border-left: 1px solid #CCE6FF;
+}
+
+.volunteerTopHeader, .volunteerHeader {
+	height: 60px;
+	width: 20%;
+}
+
+.shiftHeader {
+	text-align: center;
+}
+
+tr:nth-child(even) {
+	background-color: #E6E6E6;
+}
+
+tr:nth-child(odd) {
+	background-color: #F2F2F2;
+}
+
+.volunteerTopHeader, .shiftHeader {
+	background-color: #80DFFF;
+}
+
+.tableLabel {
+	color: #33CCFF;
+	font-size: 50px;
+	padding: 10px 10px;
+	margin-left: -30px;
+}

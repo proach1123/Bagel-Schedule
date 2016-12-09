@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link href="https://fonts.googleapis.com/css?family=Abel|Amatic+SC|Raleway:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<link rel = "stylesheet" type = "text/css" href = "stylesheets/optout.css"> 
+	</head>
+
+	<body>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+			
+			<!-- Here is the basic elements for all pages -->
+
+			<div id = "cover">
+				<div class = "coverContent">
+					<h1> Bagel Day </h1>
+					<h3> Wednesdays couldn't possibly get better. </h3>
+				</div>
+			</div>
+
+			<div id = "navigate">
+			
+				<ul> 
+					<li> <img src = "images/att.jpg" alt = "ATT Logo" class = "attLogo"> </li>
+					<li> <div class = "menuLink"> Menu </div> </li>
+					<li> <div class = "homeLink"> Home </div> </li>
+				</ul>
+			</div>
+
+			<div id = "sidebar">
+				<div class = "sidebarContent">
+					<div class = "sidebarLists">
+						<label for = "voluteerList"> Volunteer </label>
+						<ul>
+							<li> <div class = "availabilityLink"> Sign Up for Shifts </div> </li>
+							<li> <div class = "cancelShiftLink"> Cancel Shifts </div> </li>
+						</ul>
+						<hr>
+						<label for = "adminList"> Admin </label>
+						<ul>
+							<li> <div class = "scheduleLink"> Schedule </div> </li>
+						</ul>
+						<hr>
+					</div>
+				</div>
+			</div>
+
+			<!-- Page specific conent -->
+
+			<div class = "instructions">
+				<p> Cancellation Option:
+					<select class = "cancelOption">
+						<option value = " " selected> Type </option>
+						<option value = " "> </option>
+						<option value = "shift"> Shift </option>
+						<option value = "day"> Day </option>
+					</select>
+				</p>
+			</div>
+
+			<div id = "shiftOptout">
+
+				<div class = "instructionsShift">
+					<p> Input the shifts you are not available for your selected date. </p>
+				</div>
+				
+				<p class = "selectionDateShift"> Date: 
+					<select name = "month">
+						<option> Month </option>
+						<option> </option>
+						<option> January </option>
+						<option> February </option>
+						<option> March </option>
+						<option> April </option>
+						<option> May </option>
+						<option> June </option>
+						<option> July </option>
+						<option> August </option>
+						<option> September </option>
+						<option> October </option>
+						<option> November </option>
+						<option> December </option>
+					</select>
+
+					<select name = "day">
+						<option> Day </option>
+						<option> </option>
+						<option> Date 1 </option>
+						<option> Date 2 </option>
+						<option> Date 3 </option>
+						<option> Date 4 </option>
+					</select>
+				</p>
+				<h5> Shift: </h5>
+				<div class = "shiftBoxes">
+						<div class = "shiftContentAll">
+							<div class = "checkbox">
+								<form>
+									<label>
+										<input type = "checkbox"  name = "shift_setup"> Setup <br>
+										<input type = "checkbox"  name = "shift_8:30"> 8:30 - 9:00 <br>
+										<input type = "checkbox"  name = "shift_9:00"> 9:00 - 9:30 <br>
+										<input type = "checkbox"  name = "shift_9:30"> 9:30 - 10:00 <br>
+										<input type = "checkbox"  name = "shift_10:00"> 10:00 - 10:30 <br>
+										<input type = "checkbox"  name = "shift_clean_up"> Clean up <br>
+									</label>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div id = "dayOptout">	
+
+				<div class = "instructionsDay">
+					<p> Input the days you are not available. </p>
+				</div>
+				
+				<p class = "selectionDateDay"> Date:
+					<select name = "month">
+						<option> Month </option>
+						<option> </option>
+						<option> January </option>
+						<option> February </option>
+						<option> March </option>
+						<option> April </option>
+						<option> May </option>
+						<option> June </option>
+						<option> July </option>
+						<option> August </option>
+						<option> September </option>
+						<option> October </option>
+						<option> November </option>
+						<option> December </option>
+					</select>
+				</p>
+
+				<h5> Day: </h5>
+				<div class = "dayBoxes">
+					<div class = "shiftContentAll">
+						<div class = "checkbox">
+							<form>
+								<label>
+									<input type = "checkbox"  name = "day1"> Day 1 <br>
+									<input type = "checkbox"  name = "day2"> Day 2 <br>
+									<input type = "checkbox"  name = "day3"> Day 3 <br>
+									<input type = "checkbox"  name = "day4"> Day 4 <br>
+								</label>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</body>
+	<script src = "javascripts/optout.js"></script>
+	<script src = "javascripts/Sidebar-Navigation.js"></script>
+</html>		

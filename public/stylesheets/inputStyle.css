@@ -1,0 +1,262 @@
+body {
+	color: #000000;
+	background-color: #FFFFFF;
+	height: 100%;
+	font-family: 'Abel', sans-serif;
+	margin: 0;
+	padding: 0;
+}
+
+#cover {
+	height: 500px;
+	top: -20px;
+	position: relative;
+	width: 100%;
+	background: url("../images/bagel-cover.jpg");
+	background-size: cover;
+	background-attachment: scroll;
+}
+
+.coverContent{
+	margin: 0 auto;
+	text-align: center;
+	width: 70%;
+}
+
+div {
+    box-sizing: inherit;
+}
+
+body {
+	color: #000000;
+	background-color: #FFFFFF;
+	height: 100%;
+	font-family: 'Abel', sans-serif;
+	margin: 0;
+	padding: 0;
+}
+
+h1 {
+	color: #FFFFFF;
+	font-family: 'Amatic SC', cursive;
+	text-align: center;
+	font-size: 250px;
+	line-height: 100px;
+	position: relative;
+	top: 150px;
+}
+
+h3 {
+	color: #FFFFFF;
+	font-family: 'Raleway', sans-serif;
+	text-align: center;
+	font-size: 50px;
+	position: relative;
+	top: 200px;
+}
+
+#navigate {
+	background-color: #404040;
+	position: relative;
+	top: -20px;
+}
+
+#navigate ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+#navigate li{
+	display: inline;
+	margin: 0;
+	padding: 0;
+	
+}
+
+.menuLink {
+	color: #FFFFFF;
+	font-size: 20px;
+	font-weight: 300;
+	padding-top: 9px;
+	padding-bottom: 16px;
+	padding-left: 20px;
+	padding-right: 20px;
+	margin: 0;
+	position: relative;
+	left: 92vw;
+	display: inline;
+}
+
+.homeLink{
+	color: #FFFFFF;
+	font-size: 20px;
+	font-weight: 300;
+	padding-top: 9px;
+	padding-bottom: 16px;
+	padding-left: 20px;
+	padding-right: 15px;
+	margin: 0;
+	position: relative;
+	left: 83vw;
+	display: inline;
+}
+
+.attLogo {
+	height: 50px;
+	width: auto;
+	position: relative;
+	left: -10px;
+	margin: 0;
+	margin-top: 0;
+	padding: 0;
+}
+
+.activeNavigation{
+	background-color: #4D4D4D;
+	color: #80DFFF;
+}
+
+.onNavigation {
+	background-color: #4D4D4D;
+}
+
+#sidebar {
+	background-color: #4D4D4D;
+	background-attachment: fixed;
+	color: #FFFFFF;
+	position: absolute;
+	top: 550px;
+	left: 1530px;
+	height: 100vh;
+	width: 20%;
+	float: right;
+	clear: both;
+	z-index: 1;
+}
+
+#sidebar label{
+	font-size: 20px;
+	padding: 10px 10px;
+}
+
+#sidebar ul{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+#sidebar li{
+	font-size: 15px;
+	padding: 10px 25px;
+}
+
+#sidebar hr{
+	width: 80%;
+	height: 1px;
+	display: block;
+	border: 0;
+	border-top: 1px solid #FFFFFF;
+	padding: 0;
+	margin: 0;
+	margin-top: 20px;
+}
+
+.availabilityLink, .cancelShiftLink, .scheduleLink {
+	color: #80DFFF;
+	padding: 15px 25px;
+	margin: 0;
+}
+
+.activeSidebar, .onSidebar {
+	background-color: #404040;
+}
+
+/* Page specific conent */
+
+.successMessage h4{
+	color: #0AD121;
+}
+
+.failMessage h4{
+	color: #EF0000;
+}
+
+p {
+	font-size: 30px;
+	text-align: center;
+}
+
+h4 {
+	font-size: 25px;
+	font-weight: 300;
+}
+
+h5 {
+	font-size: 25px;
+}
+
+.checkbox {
+	font-size: 20px;
+}
+
+.Name-ATTU {
+	font-size: 20px;
+	text-align: left;
+	padding-left: 580px;
+	position: relative;
+}
+
+.NameInput {
+	font-size: 20px;
+	text-align: left;
+	float: left;
+}
+
+.ATTUInput {
+	font-size: 20px;
+	text-align: left;
+	float: left;
+	padding-left: 20px;
+}
+
+.shiftBoxes {
+	box-sizing: border-box;
+}
+
+.shiftContentAll {
+	background: #F2F2F2;
+	position: relative;
+	display: inline-block;
+  	margin: 0px 2% 80px 2%;
+  	text-align: left;
+  	width: 40%;
+  	left: 550px;
+}
+
+.Pagename {
+	position: relative;
+	padding-bottom: 50px;
+}
+
+.dropdown {
+	color: #000000;
+	text-align: left;
+	padding-top: 25px;
+	font-size: 20px;
+	padding-left: 30px;
+	padding-bottom: 50px;
+}
+
+.Shift {
+	padding-top: 20px;
+	padding-left: 580px;
+	position: relative;
+}
+
+.buttons {
+	margin: 10px 10px;
+	text-align: center;
+	top: -10s0px;
+	padding-bottom: 25px;
+}

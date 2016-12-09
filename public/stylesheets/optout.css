@@ -1,0 +1,211 @@
+body {
+	color: #000000;
+	background-color: #FFFFFF;
+	height: 100%;
+	font-family: 'Abel', sans-serif;
+	margin: 0;
+	padding: 0;
+}
+
+/* Here is the basic elements for all pages */
+
+#cover {
+	height: 500px;
+	top: -20px;
+	position: relative;
+	width: 100%;
+	background: url("../images/bagel-cover.jpg");
+	background-size: cover;
+	background-attachment: scroll;
+}
+
+.coverContent{
+	margin: 0 auto;
+	text-align: center;
+	width: 70%;
+}
+
+h1 {
+	color: #FFFFFF;
+	font-family: 'Amatic SC', cursive;
+	text-align: center;
+	font-size: 250px;
+	line-height: 100px;
+	position: relative;
+	top: 150px;
+	
+}
+
+h3 {
+	color: #FFFFFF;
+	font-family: 'Raleway', sans-serif;
+	text-align: center;
+	font-size: 50px;
+	position: relative;
+	top: 200px;
+}
+
+#navigate {
+	background-color: #404040;
+	position: relative;
+	top: -20px;
+}
+
+#navigate ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+#navigate li{
+	display: inline;
+	margin: 0;
+	padding: 0;
+	
+}
+
+.menuLink {
+	color: #FFFFFF;
+	font-size: 20px;
+	font-weight: 300;
+	padding-top: 9px;
+	padding-bottom: 16px;
+	padding-left: 20px;
+	padding-right: 20px;
+	margin: 0;
+	position: relative;
+	left: 92vw;
+	display: inline;
+}
+
+.homeLink{
+	color: #FFFFFF;
+	font-size: 20px;
+	font-weight: 300;
+	padding-top: 9px;
+	padding-bottom: 16px;
+	padding-left: 20px;
+	padding-right: 15px;
+	margin: 0;
+	position: relative;
+	left: 83vw;
+	display: inline;
+}
+
+.attLogo {
+	height: 50px;
+	width: auto;
+	position: relative;
+	left: -10px;
+	margin: 0;
+	margin-top: 0;
+	padding: 0;
+}
+
+.activeNavigation{
+	background-color: #4D4D4D;
+	color: #80DFFF;
+}
+
+.onNavigation {
+	background-color: #4D4D4D;
+}
+
+#sidebar {
+	background-color: #4D4D4D;
+	background-attachment: fixed;
+	color: #FFFFFF;
+	position: absolute;
+	top: 550px;
+	left: 1530px;
+	height: 100vh;
+	width: 20%;
+	float: right;
+	clear: both;
+	z-index: 1;
+}
+
+#sidebar label{
+	font-size: 20px;
+	padding: 10px 10px;
+}
+
+#sidebar ul{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+#sidebar li{
+	font-size: 15px;
+	padding: 10px 25px;
+}
+
+#sidebar hr{
+	width: 80%;
+	height: 1px;
+	display: block;
+	border: 0;
+	border-top: 1px solid #FFFFFF;
+	padding: 0;
+	margin: 0;
+	margin-top: 20px;
+}
+
+.availabilityLink, .cancelShiftLink, .scheduleLink {
+	color: #80DFFF;
+	padding: 15px 25px;
+	margin: 0;
+}
+
+.activeSidebar, .onSidebar {
+	background-color: #404040;
+}
+
+/* Page specific conent */
+
+.instructions {
+	font-size: 30px;
+	text-align: center;
+	position: relative;
+
+}
+
+#shiftOptout p{
+	text-align: center;
+	font-size: 25px;
+	margin: 20px 20px;
+}
+
+h5{
+	font: 'Abel', sans-serif;
+	font-size: 25px;
+	padding-top: 20px;
+	padding-left: 580px;
+	position: relative;
+}
+
+.shiftBoxes, .dayBoxes {
+	box-sizing: border-box;
+}
+
+.shiftContentAll {
+	background: #F2F2F2;
+	font-size: 20px;
+	position: relative;
+	display: inline-block;
+  	margin: 0px 2% 80px 2%;
+  	text-align: left;
+  	width: 40%;
+  	left: 550px;
+}
+
+#dayOptout p{
+	text-align: center;
+	font-size: 25px;
+	margin: 20px 20px;
+}
+
+.instructionShift, .instructionDay {
+	text-align: 25px;
+}

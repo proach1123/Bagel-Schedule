@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> Bagel Day Scheduling Testing </title>
+		<link href="https://fonts.googleapis.com/css?family=Abel|Amatic+SC|Raleway:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<link rel = "stylesheet" type = "text/css" href = "stylesheets/inputStyle.css">
+	</head>
+
+	<body>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+		<div id = "cover">
+			<div class = "coverContent">
+				<h1> Bagel Day </h1>
+				<h3> Wednesdays couldn't possibly get better. </h3>
+			</div>
+		</div>
+
+		<div id = "navigate">
+			
+			<ul> 
+				<li> <img src = "images/att.jpg" alt = "ATT Logo" class = "attLogo"> </li>
+				<li> <div class = "menuLink"> Menu </div> </li>
+				<li> <div class = "homeLink"> Home </div> </li>
+			</ul>
+		</div>
+
+		<div id = "sidebar">
+			<div class = "sidebarContent">
+				<div class = "sidebarLists">
+					<label for = "voluteerList"> Volunteer </label>
+					<ul>
+						<li> <div class = "availabilityLink"> Sign Up for Shifts </div> </li>
+						<li> <div class = "cancelShiftLink"> Cancel Shifts </div> </li>
+					</ul>
+					<hr>
+					<label for = "adminList"> Admin </label>
+					<ul>
+						<li> <div class = "scheduleLink"> Schedule </div> </li>
+					</ul>
+					<hr>
+				</div>
+			</div>
+		</div>
+
+		<div class = "successMessage">
+			<h4> Your Availability has been submitted. Thank, you! </h4>
+		</div>
+
+		<div class = "failMessage">
+			<h4> Please input your name and ATTU ID before submitting your information</h4>
+		</div>
+
+		<div class = "description">
+			<p> Please input your information and your schedule availability for (month). </p>
+		<div class = "Name-ATTU">
+			<form class = "inputPageForm">
+				<div class = "form-horizontal">
+					<div class = NameInput>
+						<label for = "name"> Name: </label>
+						<input name = "name" type = "text" class = "form-control" id = "name" placeholder = "Name"> 
+					</div>
+					<div class = ATTUInput>
+						<label for = "ATTUforUser"> ATTU ID: </label>
+						<input type = "text" class = "form-control" name = 'ATTUID' id = "ATTUID" placeholder = "ATTU ID">
+					</div>
+				</div>
+
+				<div class = "Shift">
+					<h4> Shift: </h4>
+				</div>
+				<div class = "shiftBoxes">
+					<div class = "shiftContentAll">
+						<div class = "checkbox">
+							<label>
+								<input type = "checkbox"  name = 'shift' id = 'shift1' value = "setup"> <label for = "setup"> Setup </label> <br>
+								<input type = "checkbox"  name = "shift" id = "shift2" value = "shift_8:30"> <label for = "shift_8:30"> 8:30 - 9:00 </label> <br>
+								<input type = "checkbox"  name = "shift" id = "shift3" value = "9:00-9:00"> <label for = "shift_9:00"> 9:00 - 9:30 </label> <br>
+								<input type = "checkbox"  name = "shift" id = "shift4" value = "9:30-10:00"> <label for = "shift_9:30"> 9:30 - 10:00 </label> <br>
+								<input type = "checkbox"  name = "shift" id = "shift5" value = "10:00-10:30"> <label for = "shift_10:00"> 10:00 - 10:30 </label> <br>
+								<input type = "checkbox"  name = "shift" id = "shift6" value = "cleanup"> <label for = "cleanup"> Clean up </label> <br>
+							</label>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+
+		<div class = "buttons">
+			<button class = "btn btn-info btn-lg" name = "submit"> Submit </button>
+			<button class = "btn btn-default btn-lg" name = "clear"> Clear </button>
+		</div>
+		<script src = "javascripts/Sidebar-Navigation.js"> </script>
+		<script src = "javascripts/submit.js"> </script>
+	</body>
+</html>

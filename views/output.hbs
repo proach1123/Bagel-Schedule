@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<link href="https://fonts.googleapis.com/css?family=Abel|Amatic+SC|Raleway:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<link rel = "stylesheet" type = "text/css" href = "stylesheets/outputStyle.css">
+	</head>
+
+	<body>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+		<div id = "cover">
+			<div class = "coverContent">
+				<h1> Bagel Day </h1>
+				<h3> Wednesdays couldn't possibly get better. </h3>
+			</div>
+		</div>
+
+		<div id = "navigate">
+			
+			<ul> 
+				<li> <img src = "images/att.jpg" alt = "ATT Logo" class = "attLogo"> </li>
+				<li> <div class = "menuLink"> Menu </div> </li>
+				<li> <div class = "homeLink"> Home </div> </li>
+			</ul>
+		</div>
+
+		<div id = "sidebar">
+			<div class = "sidebarContent">
+				<div class = "sidebarLists">
+					<label for = "voluteerList"> Volunteer </label>
+					<ul>
+						<li> <div class = "availabilityLink"> Sign Up for Shifts </div> </li>
+						<li> <div class = "cancelShiftLink"> Cancel Shifts </div> </li>
+					</ul>
+					<hr>
+					<label for = "adminList"> Admin </label>
+					<ul>
+						<li> <div class = "scheduleLink"> Schedule </div> </li>
+					</ul>
+					<hr>
+				</div>
+			</div>
+		</div>
+
+		<h4> Key: Red - no volunteers; Yellow - only one volunteer</h4>
+		<div class = "dropdown">
+			<p> Select Date:
+				<select name = "month">
+					<option> Month </option>
+					<option> </option>
+					<option> January </option>
+					<option> February </option>
+					<option> March </option>
+					<option> April </option>
+					<option> May </option>
+					<option> June </option>
+					<option> July </option>
+					<option> August </option>
+					<option> September </option>
+					<option> October </option>
+					<option> November </option>
+					<option> December </option>
+				</select>
+				<select name = "day">
+					<option> Day </option>
+					<option> </option>
+					<option> Date 1 </option>
+					<option> Date 2 </option>
+					<option> Date 3 </option>
+					<option> Date 4 </option>
+				</select>
+			</p>
+		</div>
+
+		<div id = "availabilityTable">
+			<table class = "table">
+				<tr class = "tableHeader">
+					<th scope = "col" class = "volunteerTopHeader"> Volunteers (ATTUID) </th>
+					<th scope = "col" class = "shiftHeader"> Setup </th>
+					<th scope = "col" class = "shiftHeader"> 8:30 - 9:00 </th>
+					<th scope = "col" class = "shiftHeader"> 9:00 - 9:30 </th>
+					<th scope = "col" class = "shiftHeader"> 9:30 - 10:00 </th>
+					<th scope = "col" class = "shiftHeader"> 10:00 - 10:30 </th>
+					<th scope = "col" class = "shiftHeader"> Clean Up </th>
+				<tr> 
+					<th class = "volunteerHeader"> Volunteer 1 (ATTUID 1) </td>
+					<td> Available </td>
+					<td> Available </td>
+					<td> </td>
+					<td class = "danger"> </td>
+					<td class = "warning"> Available</td>
+					<td> </td>
+				</tr>
+
+				<tr> 
+					<th class = "volunteerHeader"> Volunteer 2 (ATTUID 2) </td>
+					<td> </td>
+					<td> Available</td>
+					<td> </td>
+					<td class = "danger"> </td>
+					<td class = "warning"> </td>
+					<td> Available</td>
+				</tr>
+
+				<tr> 
+					<th class = "volunteerHeader"> Volunteer 3 (ATTUID 3) </td>
+					<td> Available</td>
+					<td> Available</td>
+					<td> Available</td>
+					<td class = "danger"> </td>
+					<td class = "warning"> </td>
+					<td> Available</td>
+				</tr>
+
+				<tr>
+					<th class = "volunteerHeader"> Volunteer 4 (ATTUID 4) </td>
+					<td> Available</td>
+					<td> </td>
+					<td> Available</td>
+					<td class = "danger"> </td>
+					<td class = "warning"> </td>
+					<td> Available</td>
+				</tr>
+
+				<tr> 
+					<th class = "volunteerHeader"> Volunteer 5 (ATTUID 5) </td>
+					<td> Available</td>
+					<td> </td>
+					<td> Available</td>
+					<td class = "danger"> </td>
+					<td class = "warning"> </td>
+					<td> </td>
+				</tr>
+			</table>
+		</div>
+	<script src = "javascripts\Sidebar-Navigation.js"> </script>
+	</body>
+</html>
