@@ -3,20 +3,15 @@ $(document).ready(main);
 function main(){
 
 	$('button[name="submitShift"]').click(function() {
-		var shifts = [];
+		/*var shifts = [];
 		var schedule = {};
 		$.each($("input[name='shift']:checked"), function (){
 			shifts.push($(this).val());
-		});
-
-		/*var dayCancelFrom = ("input[name='dayShift']:selected").val();
-		schedule [dayCancelFrom] = shifts;*/
-
+		});*/
 
 		var data = { 
 			Name: $("#nameOptout").val(), 
-			ATTU_ID: $("#ATTUIDOptout").val() /*, 
-			Shift: schedule*/
+			ATTU_ID: $("#ATTUIDOptout").val()
 		}; 
 		$.post("/optout", data, function(){}, 'json');
 	});
