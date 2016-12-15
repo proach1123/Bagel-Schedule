@@ -13,10 +13,10 @@ function Wednesdays(month,year){
 	else if(year%4==0&&year%100==0&&year%1000!=0){
 		l=29;
 	}
-	else {
+	else{
 		l=28;
 	}
-	for(var w=1;w<l;w=w+1){
+	for(var w=1;w<=l;w=w+1){
     	d.setDate(w);
 		if(d.getDay()==3){
 			console.log(d);
@@ -25,4 +25,4 @@ function Wednesdays(month,year){
 	}
     return wedarray;
 }
-console.log(Wednesdays(1,2017));
+console.log(Wednesdays(10,2016));
