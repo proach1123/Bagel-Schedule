@@ -1,15 +1,28 @@
 function Wednesdays(month,year){
+	var l;
 	var d=new Date();
 	var wedarray=[];
 	d.setMonth(month);
 	d.setFullYear(year);
-	for(var w=1;w<30;w=w+1){
+	if(month==0||month==2||month==4||month==6||month==7||month==9||month==11){
+		l=31;
+	}
+	else if(month!=1){
+		l=30;
+	}
+	else if(year%4==0&&year%100==0&&year%1000!=0){
+		l=29;
+	}
+	else {
+		l=28;
+	}
+	for(var w=1;w<l;w=w+1){
     	d.setDate(w);
 		if(d.getDay()==3){
-			var x=d;
-        	wedarray.push(x);
+			console.log(d);
+        	wedarray.push((d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear());
         }
 	}
     return wedarray;
 }
-console.log(Wednesdays(10,2016));
+console.log(Wednesdays(1,2017));
