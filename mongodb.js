@@ -20,8 +20,6 @@ var dbFunctions = {};
 //Insert documents
 
 dbFunctions.insertDocuments = function(data, collectionName, callback) {
-  console.log("Inside insertDocuments");
-  console.log(data); 
   // Get the documents collection
   var collection = dbConnection.collection(collectionName);
   // Insert some documents
@@ -41,15 +39,11 @@ dbFunctions.insertDocuments = function(data, collectionName, callback) {
 //Find Documents with query filter
 
 dbFunctions.findDocuments = function(data, collectionName, callback){
-  console.log("Inisde findDocuments");
-  console.log(data);
   //Get the month documents collection
   var collection = dbConnection.collection(collectionName);
   //Find some documents
   collection.find(data).toArray(function(err, docs) {
     assert.equal(err, null);
-    console.log("Found the follwoing records");
-    console.log(docs);
     
     if(typeof callback === 'function') {
       callback(docs);
