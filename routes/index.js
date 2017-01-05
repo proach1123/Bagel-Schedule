@@ -14,6 +14,7 @@ router.get('/input', function(req, res, next) {
 router.post('/input', function(req, res, next){
 	console.log(req.body);
 	mongoDbFunctions.insertDocuments(req.body);
+});
 
 router.get('/output', function(req, res, next) {
   res.render('output', { });
