@@ -31,8 +31,7 @@ function main(){
 
 		var data = { 
 			Name: $("#name").val(), 
-			ATTU_ID: $("#ATTUID").val(), 
-			available: available
+			ATTU_ID: $("#ATTUID").val()
 		}; 
 		$.post("/input", data, function(){}, 'json');
 	});
