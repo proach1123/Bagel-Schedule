@@ -29,6 +29,23 @@ dbFunctions.insertDocuments = function(data, collectionName, callback) {
     result) {
 
     assert.equal(err, null);
+
+
+//order the shifts in order of number of volunteers
+var shifts = [ { value : 'setup' }, { value : '8:30' }, { value : '9:00' }, { value : '9:30' }, { value : '10:00' }, { value : 'cleanup' } ];
+var i = 0;
+
+while ( i < 6 ){
+  shifts[i].count = dbConnection.collection.find( { 'Available' : shifts[i].value } ).count();
+  i++;
+}
+
+shifts.sort(function (value1, value2){
+  return value1.count - value2.count;
+});
+console.log(shifts);
+
+    
     
     if(typeof callback === 'function') {
      callback(result);
@@ -63,27 +80,18 @@ dbFunctions.updateDocument = function(data, collectionName, callback){
     {$set: data}, function (err, result) {
       assert.equal(err, null);
       assert.equal(1, result.result.n);
-      console.log("Updated the document with the field a equal to 2");
       if(typeof callback === 'function') {
         callback(result);
       }
     });
 }
-/*
 
-//Remove a document
-dbFunctions.removeDocument = function(data, collectName, callback) {
-  //Get the documents collection
-  var collection = dbConnection.collection('documents');
-  //Insert some documents
-  collection.deleteOne(data, function (err, result) {
-    assert.equal(err, null);
-    assert.equal(1, result.result.n);
-    console.log("Removed the document with the field a equal to 3");
-    if(typeof callback === 'function') {
-      callback(result);
-    }
-  });
-}
-*/
+
+
+//Algorithm for Schedule
+
+
+
+
+
 module.exports = dbFunctions;

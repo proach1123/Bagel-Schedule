@@ -38,7 +38,7 @@ router.post('/input', function(req, res, next){
 			mongoDbFunctions.findDocuments({Name: req.body.Name, ATTU_ID: req.body.ATTU_ID }, "availability_Next", function(result) {
 				if(result.length) {
 					console.log("I'm in the if statement");
-					result[0].available = req.body.available;
+					result[0].Available = req.body.Available;
 					mongoDbFunctions.updateDocument(result[0], "availability_Next");
 				}
 				else {

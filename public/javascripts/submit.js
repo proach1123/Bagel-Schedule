@@ -24,14 +24,10 @@ function main(){
 			shifts.push($(this).val());
 		});
 
-		var available = {};
-		for (var i = 0; i < 4; i++){
-			available ["Day"+(i+1)] = shifts;
-		}
-
 		var data = { 
 			Name: $("#name").val(), 
-			ATTU_ID: $("#ATTUID").val()
+			ATTU_ID: $("#ATTUID").val(),
+			Available: shifts
 		}; 
 		$.post("/input", data, function(){}, 'json');
 	});
