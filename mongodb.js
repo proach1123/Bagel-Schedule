@@ -74,14 +74,15 @@ dbFunctions.updateDocument = function(data, collectionName, callback){
 //Algorithm for Schedule
 
 
-dbFunctions.algorithm = function(data, collectionName, callback){
+dbFunctions.algorithm = function(collectionName, callback){
+  var collection = dbConnection.collection(collectionName);
 
 //order the shifts in order of number of volunteers
   var shifts = [ { value : 'setup' }, { value : '8:30' }, { value : '9:00' }, { value : '9:30' }, { value : '10:00' }, { value : 'cleanup' } ];
   var i = 0;
 
   while ( i < 6 ){
-    shifts[i].count = dbConnection.collection.find( { 'Available' : shifts[i].value } ).count();
+    shifts[i].count = dbConnection.collection.find({ 'Available' : shifts[i].value }).count();
     i++;
   }
 
@@ -90,6 +91,10 @@ dbFunctions.algorithm = function(data, collectionName, callback){
   });
 
   console.log(shifts);
+
+  if(typeof callback === 'function') {
+      callback(docs);
+  }
 }
 
 module.exports = dbFunctions;

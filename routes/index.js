@@ -28,6 +28,10 @@ router.post('/input', function(req, res, next){
 				numTimesScheduled: 0,
 				lastShift: null
 			};
+
+			//Algorithm stuff
+			mongoDbFunctions.algorithm("availability_Next");
+
 			//inserts into personRecord
 			mongoDbFunctions.insertDocuments(person, "personRecord");
 		}
