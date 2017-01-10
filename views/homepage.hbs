@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html>
 	<head>
@@ -15,7 +13,7 @@
 		<!-- Here is the basic elements for all pages -->
 
 		<div id = "cover">
-			<div class = "coverContent">
+			<div id = "coverContent">
 				<h1> Bagel Day </h1>
 				<h3> Wednesdays couldn't possibly get better. </h3>
 			</div>
@@ -51,7 +49,7 @@
 		<!-- Page specific conent -->
 
 		<div id = "scheduleTables">
-			<label for = "table1" class = "tableLabel"> Wednesday, December 7</label>	
+			<label for = "table1" class = "tableLabel"> Wednesday 1</label>	
 				<div class = "table1">
 					<table>
 						<tr class = "tableHeader">
@@ -94,7 +92,7 @@
 				</div>
 			
 			
-				<label for = "table2" class = "tableLabel"> Wednesday, December 14</label>
+				<label for = "table2" class = "tableLabel"> Wednesday 2</label>
 				<div class = "table2">
 					<table>
 						<tr class = "tableHeader">
@@ -137,7 +135,7 @@
 				</div>
 			
 			
-				<label for = "table3" class = "tableLabel"> Wednesday, December 21</label>
+				<label for = "table3" class = "tableLabel"> Wednesday 3</label>
 				<div class = "table3">
 					<table>
 						<tr class = "tableHeader">
@@ -180,7 +178,7 @@
 				</div>
 			
 			
-				<label for = "table4" class = "tableLabel"> Wednesday, December 28</label>
+				<label for = "table4" class = "tableLabel"> Wednesday 4</label>
 				<div class = "table4">
 					<table>
 						<tr class = "tableHeader">
@@ -221,6 +219,93 @@
 						</tr>
 					</table>
 				</div>
+
+				<label for = "table5" class = "tableLabel"> Wednesday 5</label>
+				<div class = "table5">
+					<table>
+						<tr class = "tableHeader">
+							<th scope = "col" class = "volunteerTopHeader"> Volunteers </th>
+							<th scope = "col" class = "shiftHeader"> Setup </th>
+							<th scope = "col" class = "shiftHeader"> 8:30 - 9:00 </th>
+							<th scope = "col" class = "shiftHeader"> 9:00 - 9:30 </th>
+							<th scope = "col" class = "shiftHeader"> 9:30 - 10:00 </th>
+							<th scope = "col" class = "shiftHeader"> 10:00 - 10:30 </th>
+							<th scope = "col" class = "shiftHeader"> Clean Up </th>
+						</tr>
+						<tr>
+							<th scope = "row" class = "volunteerHeader"> Volunteer </td>
+							<td> </td>
+							<td> </td>
+							<td> </td>
+							<td> </td>
+							<td> </td>
+							<td> </td>
+						</tr>
+						<tr>
+							<th scope = "row" class = "volunteerHeader"> Volunteer </td>
+							<td> </td>
+							<td> </td>
+							<td> </td>
+							<td> </td>
+							<td> </td>
+							<td> </td>
+						</tr>
+						<tr>
+							<th scope = "row" class = "volunteerHeader"> Volunteer </td>
+							<td> </td>
+							<td> </td>
+							<td> </td>
+							<td> </td>
+							<td> </td>
+							<td> </td>
+						</tr>
+					</table>
+				</div>
+			
+			<script>
+				var weds;
+				function Wednesdays(){
+					var l;
+					var d=new Date();
+					//d.setMonth(10);
+					//d.setFullYear(2016);
+					var m=["January","February","March","April","May","June","July","August","September","October","November","December"]
+					var month=d.getMonth();
+					var wedarray=[];
+					if(month==0||month==2||month==4||month==6||month==7||month==9||month==11){
+						l=31;
+					}
+					else if(month!=1){
+						l=30;
+					}
+					else if(year%4==0&&year%100==0&&year%1000!=0){
+						l=29;
+					}
+					else{
+						l=28;
+					}
+					for(var w=1;w<=l;w=w+1){
+				    	d.setDate(w);
+						if(d.getDay()==3){
+							console.log(d);
+				        	wedarray.push(m[d.getMonth()]+' '+d.getDate()+', '+d.getFullYear());
+				        }
+					}
+					return wedarray;
+				}
+				weds=Wednesdays();
+				document.getElementsByClassName("tableLabel")[0].innerHTML='Wednesday, '+weds[0];
+				document.getElementsByClassName("tableLabel")[1].innerHTML='Wednesday, '+weds[1];
+				document.getElementsByClassName("tableLabel")[2].innerHTML='Wednesday, '+weds[2];
+				document.getElementsByClassName("tableLabel")[3].innerHTML='Wednesday, '+weds[3];
+				if(weds[4]===undefined){
+					document.getElementsByClassName("tableLabel")[4].innerHTML='';
+					document.getElementsByClassName("table5")[0].innerHTML='';
+				}
+				else{
+					document.getElementsByClassName("tableLabel")[4].innerHTML='Wednesday, '+weds[4];
+				}
+			</script>	
 			</div>
 		<script src = "javascripts/Sidebar-Navigation.js"> </script>
 	</body>

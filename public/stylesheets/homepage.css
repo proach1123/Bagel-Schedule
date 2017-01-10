@@ -10,7 +10,7 @@ body {
 
 #cover {
 	height: 26.3vmax;
-	top: -1.05vmax;
+	top: -20px;
 	position: relative;
 	width: 100vmax;
 	background: url("../images/bagel-cover.jpg");
@@ -18,7 +18,7 @@ body {
 	background-attachment: scroll;
 }
 
-.coverContent{
+#coverContent{
 	margin: 0 auto;
 	text-align: center;
 	width: 100vmax;
@@ -40,13 +40,14 @@ h3 {
 	text-align: center;
 	font-size: 2.63vmax;
 	position: relative;
-	top: 1.45vmax;
+	top: -20px;
+	line-height: 7.9vmax;
 }
 
 #navigate {
 	background-color: #404040;
-	position: relative;
-	top: -1.1vmax;
+	position: absolute;
+	top: 26.3vmax;
 	height: 2.63vmax;
 	width: 100vmax;
 }
@@ -73,8 +74,8 @@ h3 {
 	padding-left: 1.1vmax;
 	padding-right: 0.83vmax;
 	margin: 0;
-	position: relative;
-	left: 91vmax;
+	position: absolute;
+	left: 94.5vmax;
 	display: inline;
 }
 
@@ -87,15 +88,15 @@ h3 {
 	padding-left: 1.1vmax;
 	padding-right: 0.83vmax;
 	margin: 0;
-	position: relative;
-	left: 82vmax;
+	position: absolute;
+	left: 90vmax;
 	display: inline;
 }
 
 .attLogo {
 	height: 2.63vmax;
 	width: auto;
-	position: relative;
+	position: absolute;
 	left: -0.54vmax;
 	margin: 0;
 	margin-top: 0;
@@ -116,7 +117,7 @@ h3 {
 	background-attachment: fixed;
 	color: #FFFFFF;
 	position: absolute;
-	top: 28.8vmax;
+	top: 28.9vmax;
 	left: 79.7vmax;
 	height: 100vmin;
 	width: 18.88vmax;
@@ -126,36 +127,44 @@ h3 {
 }
 
 #sidebar label{
+	line-height: 0vmax;
+	position: absolute;
 	font-size: 1.05vmax;
-	padding: 5.2% 5.2%;
+	margin: 3.5% 3% 3% 2.7%;
 }
 
 #sidebar ul{
+	top: ;
+	position: relative;
 	margin: 0;
 	padding: 0;
 	list-style: none;
 }
 
 #sidebar li{
+	line-height: 0vmax;
+	position: relative;
 	font-size: 0.8vmax;
-	padding: 5.2% 1.31%;
+	padding: 1.3% 0.65% 1.3% 1.3%;
+	margin: 3% 2.6% 0% 2.2%;
 }
 
 #sidebar hr{
+	position: relative;
 	width: 80%;
-	height: 1px;
+	height: 0.0525vmax;
 	display: block;
 	border: 0;
-	border-top: 1px solid #FFFFFF;
+	border-top: 0.0525vmax solid #FFFFFF;
 	padding: 0;
 	margin: 0;
-	margin-top: 20px;
+	margin-top: 1.05vmax;
 }
 
 .availabilityLink, .cancelShiftLink, .scheduleLink {
 	color: #80DFFF;
-	padding: 15px 25px;
-	margin: 0;
+	padding: 1.05vmax ;
+	margin: 1.575vmax 1.575vmax 0vmax 1.575vmax;
 }
 
 .activeSidebar, .onSidebar {
@@ -163,7 +172,6 @@ h3 {
 }
 
 #scheduleTables {
-	
 	width: 66vmax;
 	margin: 1.05vmax 5.25vmax;
 
@@ -180,12 +188,12 @@ td, th {
 }
 
 td, .shiftHeader {
-	height: 2.1px;
+	height: 2.1vmax;
 	width: 10%;
 }
 
 .volunteerTopHeader, .volunteerHeader {
-	height: 2.1px;
+	height: 2.1vmax;
 	width: 20%;
 }
 
