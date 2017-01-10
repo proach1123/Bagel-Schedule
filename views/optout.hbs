@@ -81,32 +81,49 @@
 						<option> November </option>
 						<option> December </option>
 					</select>
-
-					<select name = "day">
-						<option> Day </option>
-						<option> </option>
-						<option> Date 1 </option>
-						<option> Date 2 </option>
-						<option> Date 3 </option>
-						<option> Date 4 </option>
-					</select>
 				</p>
-				<h5> Shift: </h5>
+				
 				<div class = "shiftBoxes">
 						<div class = "shiftContentAll">
 							<div class = "checkbox">
 								<form>
+									<div class = "form-horizontal">
+										<div class = 'NameInput'>
+											<label for = "name"> Name: </label>
+											<input name = "nameOptout" type = "text" class = "form-control" id = "nameOptout" placeholder = "Name"> 
+										</div>
+
+										<div class = ATTUInput>
+											<label for = "ATTUforUser"> ATTU ID: </label>
+											<input type = "text" class = "form-control" name = 'ATTUIDOptout' id = "ATTUIDOptout" placeholder = "ATTU ID">
+										</div>
+									</div>
+
+									<select name = "day">
+										<option> Day </option>
+										<option> </option>
+										<option name = "dayShift" id = "dayShift1" value = "Date1"> Date 1 </option>
+										<option name = "dayShift" id = "dayShift2" value = "Date2"> Date 2 </option>
+										<option name = "dayShift" id = "dayShift3" value = "Date3"> Date 3 </option>
+										<option name = "dayShift" id = "dayShift4" value = "Date4"> Date 4 </option>
+									</select>
+
+									<h5> Shift: </h5>
+
 									<label>
-										<input type = "checkbox"  name = "shift_setup"> Setup <br>
-										<input type = "checkbox"  name = "shift_8:30"> 8:30 - 9:00 <br>
-										<input type = "checkbox"  name = "shift_9:00"> 9:00 - 9:30 <br>
-										<input type = "checkbox"  name = "shift_9:30"> 9:30 - 10:00 <br>
-										<input type = "checkbox"  name = "shift_10:00"> 10:00 - 10:30 <br>
-										<input type = "checkbox"  name = "shift_clean_up"> Clean up <br>
+										<input type = "checkbox"  name = "shift" id = "shift1" value = "setup"> Setup <br>
+										<input type = "checkbox"  name = "shift" id = "shift2" value = "shift_8:30"> 8:30 - 9:00 <br>
+										<input type = "checkbox"  name = "shift" id = "shift3" value = "shift_9:00"> 9:00 - 9:30 <br>
+										<input type = "checkbox"  name = "shift" id = "shift4" value = "shift_9:30"> 9:30 - 10:00 <br>
+										<input type = "checkbox"  name = "shift" id = "shift5" value = "shift_10:00"> 10:00 - 10:30 <br>
+										<input type = "checkbox"  name = "shift" id = "shift6" value = "shift_cleanup"> Clean up <br>
 									</label>
 								</form>
 							</div>
 						</div>
+					</div>
+					<div class = "buttons">
+						<button class = "btn btn-default btn-lg" name = "submitShift"> Submit </button>
 					</div>
 				</div>
 			</div>
@@ -151,8 +168,14 @@
 						</div>
 					</div>
 				</div>
+
+				<div class = "buttons">
+					<button class = "btn btn-info btn-lg" name = "submitDay"> Submit </button>
+				</div>
+
 			</div>
 		</body>
+	<script src = "javascripts/submitOptout.js"> </script>
 	<script src = "javascripts/optout.js"></script>
 	<script src = "javascripts/Sidebar-Navigation.js"></script>
 </html>		
