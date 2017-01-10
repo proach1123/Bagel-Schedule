@@ -28,24 +28,7 @@ dbFunctions.insertDocuments = function(data, collectionName, callback) {
     function(err, 
     result) {
 
-    assert.equal(err, null);
-
-
-//order the shifts in order of number of volunteers
-var shifts = [ { value : 'setup' }, { value : '8:30' }, { value : '9:00' }, { value : '9:30' }, { value : '10:00' }, { value : 'cleanup' } ];
-var i = 0;
-
-while ( i < 6 ){
-  shifts[i].count = dbConnection.collection.find( { 'Available' : shifts[i].value } ).count();
-  i++;
-}
-
-shifts.sort(function (value1, value2){
-  return value1.count - value2.count;
-});
-console.log(shifts);
-
-    
+    assert.equal(err, null);  
     
     if(typeof callback === 'function') {
      callback(result);
@@ -91,7 +74,22 @@ dbFunctions.updateDocument = function(data, collectionName, callback){
 //Algorithm for Schedule
 
 
+dbFunctions.algorithm = function(data, collectionName, callback){
 
+//order the shifts in order of number of volunteers
+  var shifts = [ { value : 'setup' }, { value : '8:30' }, { value : '9:00' }, { value : '9:30' }, { value : '10:00' }, { value : 'cleanup' } ];
+  var i = 0;
 
+  while ( i < 6 ){
+    shifts[i].count = dbConnection.collection.find( { 'Available' : shifts[i].value } ).count();
+    i++;
+  }
+
+  shifts.sort(function (value1, value2){
+   return value1.count - value2.count;
+  });
+
+  console.log(shifts);
+}
 
 module.exports = dbFunctions;
