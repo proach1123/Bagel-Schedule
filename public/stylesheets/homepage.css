@@ -15,16 +15,16 @@ body {
 	width: 100vmax;
 	background: url("../images/bagel-cover.jpg");
 	background-size: cover;
-	background-attachment: scroll;
+	background-attachment: fixed;
 }
 
-#coverContent{
+.coverContent{
 	margin: 0 auto;
 	text-align: center;
 	width: 100vmax;
 }
 
-h1 {
+h1{
 	color: #FFFFFF;
 	font-family: 'Amatic SC', cursive;
 	text-align: center;
@@ -34,7 +34,7 @@ h1 {
 	
 }
 
-h3 {
+h3{
 	color: #FFFFFF;
 	font-family: 'Raleway', sans-serif;
 	text-align: center;
@@ -134,7 +134,6 @@ h3 {
 }
 
 #sidebar ul{
-	top: ;
 	position: relative;
 	margin: 0;
 	padding: 0;
@@ -163,7 +162,7 @@ h3 {
 
 .availabilityLink, .cancelShiftLink, .scheduleLink {
 	color: #80DFFF;
-	padding: 1.05vmax ;
+	padding: 1.05vmax;
 	margin: 1.575vmax 1.575vmax 0vmax 1.575vmax;
 }
 
@@ -173,8 +172,7 @@ h3 {
 
 #scheduleTables {
 	width: 66vmax;
-	margin: 1.05vmax 5.25vmax;
-
+	margin: 2vmax 5.25vmax;
 }
 
 table {
