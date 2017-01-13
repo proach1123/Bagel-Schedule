@@ -9,8 +9,8 @@
 6 silly lifecycle nodehandelbars@0.0.0~prestart: no script for prestart, continuing
 7 info lifecycle nodehandelbars@0.0.0~start: nodehandelbars@0.0.0
 8 verbose lifecycle nodehandelbars@0.0.0~start: unsafe-perm in lifecycle true
-9 verbose lifecycle nodehandelbars@0.0.0~start: PATH: C:\Program Files\nodejs\node_modules\npm\bin\node-gyp-bin;C:\node\Bagel-Schedule\node_modules\.bin;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\IntelSGXPSW\bin\x64\Release\;C:\Program Files\Intel\IntelSGXPSW\bin\win32\Release\;C:\Program Files (x86)\Skype\Phone\;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files (x86)\MiKTeX 2.9\miktex\bin\;C:\Program Files\nodejs\;C:\Users\scien\AppData\Local\Microsoft\WindowsApps;C:\Users\scien\AppData\Roaming\npm
-10 verbose lifecycle nodehandelbars@0.0.0~start: CWD: C:\node\Bagel-Schedule
+9 verbose lifecycle nodehandelbars@0.0.0~start: PATH: C:\Program Files\nodejs\node_modules\npm\bin\node-gyp-bin;C:\Users\Maria\Documents\Andrew Internship\Bagel-Scheduler 2.0\Bagel-Schedule\node_modules\.bin;C:\Users\Maria\AppData\Roaming\npm;C:\Program Files\nodejs\;c:\Program Files (x86)\Intel\iCLS Client\;c:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\OpenCL SDK\3.0\bin\x86;C:\Program Files (x86)\Intel\OpenCL SDK\3.0\bin\x64;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\Common Files\NeatReceipts\Drivers\M12\;C:\Program Files (x86)\Windows Live\Shared;C:\Program Files (x86)\Skype\Phone\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Users\Maria\AppData\Local\Microsoft\WindowsApps;C:\Users\Maria\AppData\Roaming\npm
+10 verbose lifecycle nodehandelbars@0.0.0~start: CWD: C:\Users\Maria\Documents\Andrew Internship\Bagel-Scheduler 2.0\Bagel-Schedule
 11 silly lifecycle nodehandelbars@0.0.0~start: Args: [ '/d /s /c', 'node ./bin/www' ]
 12 silly lifecycle nodehandelbars@0.0.0~start: Returned: code: 1  signal: null
 13 info lifecycle nodehandelbars@0.0.0~start: Failed to exec start script
@@ -25,7 +25,7 @@
 14 verbose stack     at maybeClose (internal/child_process.js:877:16)
 14 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:226:5)
 15 verbose pkgid nodehandelbars@0.0.0
-16 verbose cwd C:\node\Bagel-Schedule
+16 verbose cwd C:\Users\Maria\Documents\Andrew Internship\Bagel-Scheduler 2.0\Bagel-Schedule
 17 error Windows_NT 10.0.14393
 18 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "start"
 19 error node v6.9.1
