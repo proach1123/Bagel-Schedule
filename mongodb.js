@@ -4,7 +4,7 @@
 var MongoClient = require('mongodb').MongoClient, assert = require('assert');
 
 //connection URL
-var url = 'mongodb://localhost:3000/data';
+var url = 'mongodb://localhost:3000';
 
 var dbConnection = null;
 
@@ -50,7 +50,7 @@ dbFunctions.findDocuments = function(data, collectionName, callback){
     }
   });
 }
- 
+
 
 //Update a document
 
@@ -69,7 +69,7 @@ dbFunctions.updateDocument = function(data, collectionName, callback){
     });
 }
 
-
+//checik how queries completed try to look into promises. array of promises wait until complete
 
 //Algorithm for Schedule
 
@@ -79,22 +79,38 @@ dbFunctions.algorithm = function(collectionName, callback){
 
 //order the shifts in order of number of volunteers
   var shifts = [ { value : 'setup' }, { value : '8:30' }, { value : '9:00' }, { value : '9:30' }, { value : '10:00' }, { value : 'cleanup' } ];
-  var i = 0;
-
-  while ( i < 6 ){
-    shifts[i].count = dbConnection.collection.find({ 'Available' : shifts[i].value }).count();
-    i++;
+  var promiseList = [];
+  for(var i=0; i < shifts.length; i++) {
+    promiseList[i] = Q.defer();
   }
 
-  shifts.sort(function (value1, value2){
-   return value1.count - value2.count;
-  });
+  for ( var i=0; i<shifts.length; i++ ){
+    // console.log(shifts[i]);
+    // console.log("Here");
+    var shift = shifts[i];
+    var promise = promiseList[i];
+    collection.find({ 'Available[]' : { $elemMatch : { $eq : shifts[i].value } } }).toArray(function(err, result) {
+        // shift = result.length;
+        console.log(shift);
+        console.log(result);
+        console.log(result.length);
+        shift.count = result.length;
+        promise.resolve();
+        // shifts[i].count=result.length;
+        //resolve here for each 
+    });
+  }
+
+  Q.all(promiseList).done(function(value){
+    // console.log(shifts);
+    //when q.all is resolved
+    shifts.sort(function (value1, value2){
+    return value1.count - value2.count;
+    });
 
   console.log(shifts);
+  });
 
-  if(typeof callback === 'function') {
-      callback(docs);
-  }
 }
 
 module.exports = dbFunctions;
