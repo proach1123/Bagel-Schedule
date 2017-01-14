@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 
 //Connects to the MONGO Database
 
@@ -230,5 +229,4 @@ dbFunctions.algorithm = function(collectionName, callback){
 
 }
 
->>>>>>> origin/master
 module.exports = dbFunctions;
