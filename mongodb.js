@@ -239,12 +239,11 @@ dbFunctions.algorithm = function(collectionName, callback){
    }
    finalpromise.promise.then(function () {
   Q.all(promiseList).done(function(value){
-     console.log(shifts);
     //when q.all is resolved
-    // shifts.sort(function (value1, value2){
-    // return value1.count - value2.count;
-    //});
-    //console.log(shifts);
+    shifts.sort(function (value1, value2){
+    return value1.count - value2.count;
+    });
+    console.log(shifts);
   });
 });
 
