@@ -2,6 +2,7 @@
 //Connects to the MONGO Database
 
 var MongoClient = require('mongodb').MongoClient, assert = require('assert');
+var Q = require('q');
 
 //connection URL
 var url = 'mongodb://localhost:3000';
@@ -112,8 +113,6 @@ dbFunctions.algorithm = function(collectionName, callback){
   });
 
 }
-
-=======
 
 //Connects to the MONGO Database
 
@@ -195,37 +194,59 @@ dbFunctions.algorithm = function(collectionName, callback){
 
 //order the shifts in order of number of volunteers
   var shifts = [ { value : 'setup' }, { value : '8:30' }, { value : '9:00' }, { value : '9:30' }, { value : '10:00' }, { value : 'cleanup' } ];
+  
   var promiseList = [];
   for(var i=0; i < shifts.length; i++) {
     promiseList[i] = Q.defer();
   }
-
-  for ( var i=0; i<shifts.length; i++ ){
-    // console.log(shifts[i]);
-    // console.log("Here");
-    var shift = shifts[i];
-    var promise = promiseList[i];
-    collection.find({ 'Available[]' : { $elemMatch : { $eq : shifts[i].value } } }).toArray(function(err, result) {
-        // shift = result.length;
-        console.log(shift);
-        console.log(result);
-        console.log(result.length);
-        shift.count = result.length;
-        promise.resolve();
-        // shifts[i].count=result.length;
-        //resolve here for each 
-    });
-  }
-
+  
+  var count = 0;
+  var finalpromise =  Q.defer();
+  for ( var j=0; j<shifts.length; j++ ){
+    var promise=promiseList[j];
+    if(j===0){
+      var shift = shifts[count];
+      var innerPromise = promiseList[count+1];
+    
+      collection.find({ 'Available[]' : { $elemMatch : { $eq : shifts[count].value } } }).toArray(function(err, result) {
+         shift.count = result.length;
+         console.log(shift.count);
+         count++;
+         innerPromise.resolve();
+      });
+     
+    }
+    else{
+    promise.promise.then(function () {
+    var shift = shifts[count];
+    if(count<promiseList.length-1){
+    var innerPromise = promiseList[count+1];
+    }
+      collection.find({ 'Available[]' : { $elemMatch : { $eq : shifts[count].value } } }).toArray(function(err, result) {
+         shift.count = result.length;
+         //console.log(shifts);
+         count++;
+         if (count<promiseList.length){
+          innerPromise.resolve();
+         }
+         else{
+          finalpromise.resolve();
+         }
+      });
+         
+     });
+    }
+   }
+   finalpromise.promise.then(function () {
   Q.all(promiseList).done(function(value){
-    // console.log(shifts);
+     console.log(shifts);
     //when q.all is resolved
-    shifts.sort(function (value1, value2){
-    return value1.count - value2.count;
-    });
-
-  console.log(shifts);
+    // shifts.sort(function (value1, value2){
+    // return value1.count - value2.count;
+    //});
+    //console.log(shifts);
   });
+});
 
 }
 
