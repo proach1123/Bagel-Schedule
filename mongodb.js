@@ -172,7 +172,6 @@ dbFunctions.findDocuments = function(data, collectionName, callback){
 dbFunctions.updateDocument = function(data, collectionName, callback){
   //Get the documents collection
   var collection = dbConnection.collection(collectionName);
-  //Updates document where a is 2, set b equal to 1
   console.log(data);
   collection.updateOne({ _id: data._id },
     {$set: data}, function (err, result) {
@@ -184,7 +183,27 @@ dbFunctions.updateDocument = function(data, collectionName, callback){
     });
 }
 
-//checik how queries completed try to look into promises. array of promises wait until complete
+dbFunctions.aggregateDocuments = function(data, collectionName, callback){
+  //Get the document collection
+  var collection = dbConnection.collection(collectionName);
+  collection.aggregate([
+    {
+      $lookup:
+      {
+        from: "personRecord",
+        localField: "ATTU_ID",
+        foreignField: "ATTU_ID",
+        as: "record"
+      }
+    }
+  ])
+  var tester = collection.find({ 'lastShift' : "null" }).toArray(function(err, docs){ 
+    assert.equal(err, null);
+
+  });
+  //console.log(tester);
+}
+
 
 //Algorithm for Schedule
 
@@ -210,7 +229,7 @@ dbFunctions.algorithm = function(collectionName, callback){
     
       collection.find({ 'Available[]' : { $elemMatch : { $eq : shifts[count].value } } }).toArray(function(err, result) {
          shift.count = result.length;
-         console.log(shift.count);
+         //console.log(shift.count);
          count++;
          innerPromise.resolve();
       });
@@ -224,7 +243,6 @@ dbFunctions.algorithm = function(collectionName, callback){
     }
       collection.find({ 'Available[]' : { $elemMatch : { $eq : shifts[count].value } } }).toArray(function(err, result) {
          shift.count = result.length;
-         //console.log(shifts);
          count++;
          if (count<promiseList.length){
           innerPromise.resolve();
@@ -239,11 +257,10 @@ dbFunctions.algorithm = function(collectionName, callback){
    }
    finalpromise.promise.then(function () {
   Q.all(promiseList).done(function(value){
-    //when q.all is resolved
     shifts.sort(function (value1, value2){
     return value1.count - value2.count;
     });
-    console.log(shifts);
+    //console.log(shifts);
   });
 });
 

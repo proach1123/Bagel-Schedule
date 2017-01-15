@@ -34,6 +34,8 @@ router.post('/input', function(req, res, next){
 
 			//inserts into personRecord
 			mongoDbFunctions.insertDocuments(person, "personRecord");
+
+			mongoDbFunctions.aggregateDocuments(person, "availability_Next");
 		}
 
 		//if it is found in personRecord
