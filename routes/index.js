@@ -54,6 +54,14 @@ router.post('/input', function(req, res, next){
 	});
 });
 
+router.get('/login', function(req, res, next) {
+  res.render('login', { });
+});
+
+router.post('/login', function(req, res, next){
+	console.log(req.body);
+});
+
 router.get('/output', function(req, res, next) {
   res.render('output', { });
 });

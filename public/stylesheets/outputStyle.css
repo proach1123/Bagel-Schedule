@@ -167,10 +167,10 @@ p {
 	margin-top: 20px;
 }
 
-.availabilityLink, .cancelShiftLink, .scheduleLink {
+.availabilityLink, .cancelShiftLink, .scheduleLink, .loginLink {
 	color: #80DFFF;
-	padding: 15px 25px;
-	margin: 0;
+	padding: 1.05vmax;
+	margin: 1.575vmax 1.575vmax 0vmax 1.575vmax;
 }
 
 .activeSidebar, .onSidebar {

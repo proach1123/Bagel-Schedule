@@ -24,14 +24,17 @@ body {
 	width: 100vmax;
 }
 
+div {
+    box-sizing: inherit;
+}
+
 h1{
 	color: #FFFFFF;
 	font-family: 'Amatic SC', cursive;
 	text-align: center;
 	font-size: 13.15vmax;
 	position: relative;
-	top: 3.33vmax;
-	
+	top: 3.33vmax;	
 }
 
 h3{
@@ -170,50 +173,82 @@ h3{
 	background-color: #404040;
 }
 
-#scheduleTables {
-	width: 66vmax;
-	margin: 2vmax 5.25vmax;
+/* Page specific conent */
+
+.successMessage h4{
+	color: #0AD121;
 }
 
-table {
-	font-size: 1.05vmax;
-	margin: 0.525vmax 1.05vmax;
+.failMessage h4{
+	color: #EF0000;
 }
 
-td, th {
-	margin: 2.62vmax auto;
-	padding: 1.05vmax 1.05vmax;
+p {
+	font-size: 30px;
+	text-align: center;
+	position: relative;
+	padding-top: 1.5vmax;
 }
 
-td, .shiftHeader {
-	height: 2.1vmax;
-	width: 10%;
+h4 {
+	font-size: 25px;
+	font-weight: 300;
 }
 
-.volunteerTopHeader, .volunteerHeader {
-	height: 2.1vmax;
-	width: 20%;
+h5 {
+	font-size: 25px;
 }
 
-.shiftHeader{
+
+.Reg-Log {
+	font-size: 20px;
+	text-align: center;
+	position: relative;
+}
+
+.FirstNameInput {
+	font-size: 20px;
 	text-align: center;
 }
 
-tr:nth-child(even) {
-	background-color: #E6E6E6;
+.LastNameInput {
+	font-size: 20px;
+	text-align: center;
 }
 
-tr:nth-child(odd){
-	background-color: #F2F2F2;
+.EmailInput {
+	font-size: 20px;
+	text-align: center;
 }
 
-.volunteerTopHeader, .shiftHeader {
-	background-color: #80DFFF;
+.PasswordInput {
+	font-size: 20px;
+	text-align: center;
 }
 
-.tableLabel{
-	color: #33CCFF;
-	font-size: 2.62vmax;
-	padding: 0.525vmax 0.525vmax;
-	margin-left: -1.575vmax;
+.Pagename {
+	position: relative;
+	padding-bottom: 50px;
+}
+
+.dropdown {
+	color: #000000;
+	text-align: left;
+	padding-top: 25px;
+	font-size: 20px;
+	padding-left: 30px;
+	padding-bottom: 50px;
+}
+
+.Shift {
+	padding-top: 20px;
+	padding-left: 580px;
+	position: relative;
+}
+
+.buttons {
+	margin: 10px 10px;
+	text-align: center;
+	top: -10s0px;
+	padding-bottom: 25px;
 }
