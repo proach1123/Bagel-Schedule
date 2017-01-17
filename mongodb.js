@@ -170,6 +170,15 @@ dbFunctions.findDocuments = function(data, collectionName, callback){
 //Update a document
 
 dbFunctions.updateDocument = function(data, collectionName, callback){
+  var collection = dbConnection.collection(collectionName);
+  var bulk = collection.initializeUnorderedBulkOp();
+      bulk.find( { ATTU_ID: data.ATTU_ID }).upsert().replaceOne({
+        Name: data.Name,
+        ATTU_ID: data.ATTU_ID, 
+        Available: data.Available,
+      });
+      bulk.execute();
+  /*
   //Get the documents collection
   var collection = dbConnection.collection(collectionName);
   console.log(data);
@@ -181,6 +190,7 @@ dbFunctions.updateDocument = function(data, collectionName, callback){
         callback(result);
       }
     });
+*/
 }
 
 dbFunctions.aggregateDocuments = function(data, collectionName, callback){

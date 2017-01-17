@@ -35,11 +35,14 @@ router.post('/input', function(req, res, next){
 			//inserts into personRecord
 			mongoDbFunctions.insertDocuments(person, "personRecord");
 
-			mongoDbFunctions.aggregateDocuments(person, "availability_Next");
+			//mongoDbFunctions.aggregateDocuments(person, "availability_Next");
 		}
 
 		//if it is found in personRecord
 		else {
+			mongoDbFunctions.updateDocument(req.body, "availability_Next");
+			console.log("here");
+			/*
 			//finds the availability document for person in next month's availability 
 			mongoDbFunctions.findDocuments({Name: req.body.Name, ATTU_ID: req.body.ATTU_ID }, "availability_Next", function(result) {
 				if(result.length) {
@@ -51,7 +54,8 @@ router.post('/input', function(req, res, next){
 					console.log("I'm in the else statement")
 					mongoDbFunctions.insertDocuments(req.body, "availability_Next");
 				}
-			});	
+			});
+			*/	
 		}
 	});
 });
