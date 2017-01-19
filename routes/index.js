@@ -73,6 +73,7 @@ router.get('/output', function(req, res, next) {
 });
 
 router.get('/optout', function(req, res, next) {
+	console.log(req.body);
   res.render('optout', { });
 });
 
