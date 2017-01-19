@@ -22,25 +22,30 @@ router.post('/input', function(req, res, next){
 			//inserts availability into next month's availability
 			mongoDbFunctions.insertDocuments(req.body, "availability_Next");
 			//creates document for personRecord
+			//var d = new Date(2017, 02, 30, 0, 0, 0, 0);
 			var person = {
 				Name: req.body.Name,
 				ATTU_ID: req.body.ATTU_ID,
 				numTimesScheduled: 0,
 				lastShift: null
 			};
+			//inserts into personRecord
+			mongoDbFunctions.insertDocuments(person, "personRecord");
 
 			//Algorithm stuff
 			mongoDbFunctions.algorithm("availability_Next");
 
-			//inserts into personRecord
-			mongoDbFunctions.insertDocuments(person, "personRecord");
-
 			//mongoDbFunctions.aggregateDocuments(person, "availability_Next");
 		}
-
+/*
 		//if it is found in personRecord
 		else {
-			mongoDbFunctions.updateDocument(req.body, "availability_Next");
+			var adhere = {
+				Name: req.body.Name,
+				ATTU_ID: req.body.ATTU_ID
+			};
+			var availableShifts[] = req.body.Available[];
+			mongoDbFunctions.updateDocument(adhere, availableShifts, "availability_Next");
 			console.log("here");
 			/*
 			//finds the availability document for person in next month's availability 
@@ -55,8 +60,8 @@ router.post('/input', function(req, res, next){
 					mongoDbFunctions.insertDocuments(req.body, "availability_Next");
 				}
 			});
-			*/	
-		}
+				
+		} */
 	});
 });
 
