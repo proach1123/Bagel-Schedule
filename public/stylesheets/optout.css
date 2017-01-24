@@ -164,27 +164,15 @@ h3 {
 
 /* Page specific conent */
 
-.instructions {
+p {
 	font-size: 30px;
 	text-align: center;
-	position: relative;
-
-}
-
-#shiftOptout p{
-	text-align: center;
-	font-size: 25px;
-	margin: 20px 20px;
 }
 
 h5 {
 	font: 'Abel', sans-serif;
 	font-size: 25px;
 	position: relative;
-}
-
-.shiftBoxes, .dayBoxes {
-	box-sizing: border-box;
 }
 
 .shiftContentAll {
@@ -198,12 +186,9 @@ h5 {
   	left: 550px;
 }
 
-#dayOptout p{
+.buttons {
+	margin: 10px 10px;
 	text-align: center;
-	font-size: 25px;
-	margin: 20px 20px;
-}
-
-.instructionShift, .instructionDay {
-	text-align: 25px;
+	top: -10s0px;
+	padding-bottom: 25px;
 }

@@ -11,7 +11,7 @@
 			
 			<!-- Here is the basic elements for all pages -->
 
-			<div id = "cover">
+		<div id = "cover">
 			<div class = "coverContent">
 				<h1> Bagel Day </h1>
 				<h3> Wednesdays couldn't possibly get better. </h3>
@@ -47,136 +47,48 @@
 			</div>
 		</div>
 
-			<!-- Page specific conent -->
+		<!-- Page specific conent -->
 
-			<div class = "instructions">
-				<p> Cancellation Option:
-					<select class = "cancelOption">
-						<option value = " " selected> Type </option>
-						<option value = " "> </option>
-						<option value = "shift"> Shift </option>
-						<option value = "day"> Day </option>
-					</select>
-				</p>
-			</div>
+		<div class = "description">
+			<p> Please checkoff which date(s) you would like to cancel in the current month for. </p>
+		</div>
 
-			<div id = "shiftOptout">
 
-				<div class = "instructionsShift">
-					<p> Input the shifts you are not available for your selected date. </p>
-				</div>
-				
-				<p class = "selectionDateShift"> Date: 
-					<select name = "month">
-						<option> Month </option>
-						<option> </option>
-						<option> January </option>
-						<option> February </option>
-						<option> March </option>
-						<option> April </option>
-						<option> May </option>
-						<option> June </option>
-						<option> July </option>
-						<option> August </option>
-						<option> September </option>
-						<option> October </option>
-						<option> November </option>
-						<option> December </option>
-					</select>
-				</p>
-				
-				<div class = "shiftBoxes">
-						<div class = "shiftContentAll">
-							<div class = "checkbox">
-								<form>
-									<div class = "form-horizontal">
-										<div class = 'NameInput'>
-											<label for = "name"> Name: </label>
-											<input name = "nameOptout" type = "text" class = "form-control" id = "nameOptout" placeholder = "Name"> 
-										</div>
-
-										<div class = ATTUInput>
-											<label for = "ATTUforUser"> ATTU ID: </label>
-											<input type = "text" class = "form-control" name = 'ATTUIDOptout' id = "ATTUIDOptout" placeholder = "ATTU ID">
-										</div>
-									</div>
-
-									<select name = "day">
-										<option> Day </option>
-										<option> </option>
-										<option name = "dayShift" id = "dayShift1" value = "Date1"> Date 1 </option>
-										<option name = "dayShift" id = "dayShift2" value = "Date2"> Date 2 </option>
-										<option name = "dayShift" id = "dayShift3" value = "Date3"> Date 3 </option>
-										<option name = "dayShift" id = "dayShift4" value = "Date4"> Date 4 </option>
-									</select>
-
-									<h5> Shift: </h5>
-
-									<label>
-										<input type = "checkbox"  name = "shift" id = "shift1" value = "setup"> Setup <br>
-										<input type = "checkbox"  name = "shift" id = "shift2" value = "shift_8:30"> 8:30 - 9:00 <br>
-										<input type = "checkbox"  name = "shift" id = "shift3" value = "shift_9:00"> 9:00 - 9:30 <br>
-										<input type = "checkbox"  name = "shift" id = "shift4" value = "shift_9:30"> 9:30 - 10:00 <br>
-										<input type = "checkbox"  name = "shift" id = "shift5" value = "shift_10:00"> 10:00 - 10:30 <br>
-										<input type = "checkbox"  name = "shift" id = "shift6" value = "shift_cleanup"> Clean up <br>
-									</label>
-								</form>
-							</div>
-						</div>
-					</div>
-					<div class = "buttons">
-						<button class = "btn btn-default btn-lg" name = "submitShift"> Submit </button>
-					</div>
-				</div>
-			</div>
-
-			<div id = "dayOptout">	
-
-				<div class = "instructionsDay">
-					<p> Input the days you are not available. </p>
-				</div>
-				
-				<p class = "selectionDateDay"> Date:
-					<select name = "month">
-						<option> Month </option>
-						<option> </option>
-						<option> January </option>
-						<option> February </option>
-						<option> March </option>
-						<option> April </option>
-						<option> May </option>
-						<option> June </option>
-						<option> July </option>
-						<option> August </option>
-						<option> September </option>
-						<option> October </option>
-						<option> November </option>
-						<option> December </option>
-					</select>
-				</p>
-
-				<h5> Day: </h5>
-				<div class = "dayBoxes">
+		<div class = "shiftBoxes">
 					<div class = "shiftContentAll">
 						<div class = "checkbox">
 							<form>
+								<div class = "form-horizontal">
+									<div class = 'NameInput'>
+										<label for = "name"> Name: </label>
+										<input name = "nameOptout" type = "text" class = "form-control" id = "nameOptout" placeholder = "Name"> 
+									</div>
+
+								<div class = ATTUInput>
+									<label for = "ATTUforUser"> ATTU ID: </label>
+									<input type = "text" class = "form-control" name = 'ATTUIDOptout' id = "ATTUIDOptout" placeholder = "ATTU ID">
+								</div>
+							</div>
+
+								<h5> Cancellation Date: </h5>
+
 								<label>
-									<input type = "checkbox"  name = "day1"> Day 1 <br>
-									<input type = "checkbox"  name = "day2"> Day 2 <br>
-									<input type = "checkbox"  name = "day3"> Day 3 <br>
-									<input type = "checkbox"  name = "day4"> Day 4 <br>
+									<input type = "checkbox"  name = "day" id = "day1" value = "day1"> Day 1 <br>
+									<input type = "checkbox"  name = "day" id = "day2" value = "day2"> Day 2 <br>
+									<input type = "checkbox"  name = "day" id = "day3" value = "day3"> Day 3 <br>
+									<input type = "checkbox"  name = "day" id = "day4" value = "day4"> Day 4 <br>
+									<input type = "checkbox"  name = "day" id = "day5" value = "day5"> Day 5 <br>
 								</label>
 							</form>
 						</div>
 					</div>
 				</div>
-
 				<div class = "buttons">
-					<button class = "btn btn-info btn-lg" name = "submitDay"> Submit </button>
+					<button class = "btn btn-info btn-lg" name = "submit"> Submit </button>
 				</div>
-
 			</div>
-		</body>
+		</div>
+	</body>
 	<script src = "javascripts/submitOptout.js"> </script>
 	<script src = "javascripts/optout.js"></script>
 	<script src = "javascripts/Sidebar-Navigation.js"></script>
