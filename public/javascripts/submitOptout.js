@@ -33,7 +33,7 @@ function main(){
 		$.post("/optout", data, function(){}, 'json');
 	});
 */
-	$('button[name="submitShift"]').click(function() {
+	/*$('button[name="submitShift"]').click(function() {
 		var shifts = [];
 		$.each($("input[name='shift']:checked"), function (){
 			shifts.push($(this).val());
@@ -46,9 +46,9 @@ function main(){
 		}; 
 		console.log(data);
 		$.post("/optout", data, function(){}, 'json');
-	});
+	});*/
 
-	/*$('button[name="submitDay"]').click(function() {
+	$('button[name="submitDay"]').click(function() {
 		var shifts = [];
 		$.each($("input[name='day']:checked"), function (){
 			shifts.push($(this).val());
@@ -57,8 +57,9 @@ function main(){
 		var data = { 
 			Name: $("#name").val(), 
 			ATTU_ID: $("#ATTUID").val()
-			Cancel: shifts
-		}; 
+			Cancel: day
+		};
+		console.log(data); 
 		$.post("/optout", data, function(){}, 'json');
-	});*/
+	});
 }
