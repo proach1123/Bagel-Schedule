@@ -65,3 +65,71 @@ dbFunctions.algorithm = function(collectionName, callback){
     console.log(shifts[5]);
 }
 */
+
+dbFunctions.aggregateDocuments = function(data, collectionName, callback){
+  //Get the document collection
+  var collection = dbConnection.collection(collectionName);
+  collection.aggregate([
+    {
+      $lookup:
+      {
+        from: "personRecord",
+        localField: "ATTU_ID",
+        foreignField: "ATTU_ID",
+        as: "record"
+      } },
+     { 
+      $sort : { "record.lastShift" : 1 }
+     }
+  ]).toArray(function(err, docs){ 
+    assert.equal(err, null);
+    if(docs) {
+      //console.log(docs[0]);
+    }
+  });
+}
+
+
+
+
+var selectedPeopleList = [];
+
+        function sequentiallyRun(shifts) {
+          var sequence = Promise.resolve();
+
+          shifts.forEach(function (shift){
+            sequence = sequence.then( function () {
+               return collection.aggregate([
+            {
+              $lookup: 
+                {
+                  from: "personRecord",
+                  localField: "ATTU_ID",
+                  foreignField: "ATTU_ID",
+                  as: "record"
+                } 
+            },
+
+            {
+              $match : { 'Available[]' : { $elemMatch : { $eq : shift.value } }, "record.ATTU_ID": { $nin : _.map(selectedPeopleList, 'ATTU_ID') } }
+            },
+
+            { 
+              $sort : { "record.lastShift" : 1 }
+            }
+              ]).toArray(function(err, docs){ 
+                assert.equal(err, null);
+                //if documents are present then it will print the one who hasn't worked in the longest amount of time
+                
+
+              }).then(function (result) {
+                if(docs && docs.length) {
+                  selectedPeopleList.push({ ATTU_ID : docs[0].ATTU_ID, Name: docs[0].Name, Shift : shift.value});
+                  console.log(docs[0]);
+                }
+              });
+            });            
+          })
+          return sequence;
+        }
+        console.log(selectedPeopleList);

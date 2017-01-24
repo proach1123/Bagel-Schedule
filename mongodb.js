@@ -194,30 +194,6 @@ dbFunctions.updateDocument = function(data, shifts, collectionName, callback){
 */
 }
 
-dbFunctions.aggregateDocuments = function(data, collectionName, callback){
-  //Get the document collection
-  var collection = dbConnection.collection(collectionName);
-  collection.aggregate([
-    {
-      $lookup:
-      {
-        from: "personRecord",
-        localField: "ATTU_ID",
-        foreignField: "ATTU_ID",
-        as: "record"
-      } },
-     { 
-      $sort : { "record.lastShift" : 1 }
-     }
-  ]).toArray(function(err, docs){ 
-    assert.equal(err, null);
-    if(docs) {
-      //console.log(docs[0]);
-    }
-  });
-}
-
-
 //Algorithm for Schedule
 
 
@@ -248,39 +224,56 @@ dbFunctions.algorithm = function(collectionName, callback){
 
         //sorted shifts based on number of volunteers
         console.log(shifts);
+        
+
 
         var selectedPeopleList = [];
 
-        shifts.forEach(function (shift){
-          collection.aggregate([
-          {
-            $lookup: 
-              {
-                from: "personRecord",
-                localField: "ATTU_ID",
-                foreignField: "ATTU_ID",
-                as: "record"
-              } 
-          },
-          {
-            $match : { 'Available[]' : { $elemMatch : { $eq : shift.value } } }, { "record.ATTU_ID": $nin: { _.map(selectedPeopleList, 'ATTU_ID') } }
-          },
-          { 
-            $sort : { "record.lastShift" : 1 }
-          }
-        ]).toArray(function(err, docs){ 
-            assert.equal(err, null);
-            //if documents are present then it will print the one who hasn't worked in the longest amount of time
-            if(docs && docs.length) {
-              selectedPeopleList.push({ ATTU_ID : docs[0].ATTU_ID, Name: docs[0].Name });
-              console.log(docs[0]);
-            }
-
-          });
-
+        var sequentially = function(shifts) {
         
-        });
-    });
-}
+        var p = Promise.resolve();
+
+          Promise.all(shifts.map (function (){
+            p=p.then( function() { return collection.aggregate([
+            {
+              $lookup: 
+                {
+                  from: "personRecord",
+                  localField: "ATTU_ID",
+                  foreignField: "ATTU_ID",
+                  as: "record"
+                } 
+            },
+
+            {
+              $match : { 'Available[]' : { $elemMatch : { $eq : shift.value } }, "record.ATTU_ID": { $nin : _.map(selectedPeopleList, 'ATTU_ID') } }
+            },
+
+            { 
+              $sort : { "record.lastShift" : 1 }
+            }
+              ]).toArray(function(err, docs){ 
+                assert.equal(err, null);
+                //if documents are present then it will print the one who hasn't worked in the longest amount of time
+                
+
+              }).then(function (stuff) {
+                console.log("our results", stuff);
+                if (stuff && stuff.length){
+                  selectedPeopleList.push({ ATTU_ID : stuff[0].ATTU_ID, Name: stuff[0].Name });
+                }
+              });
+            });
+            return p;
+          })
+          )
+          .then(function(){
+            console.log("here");
+            console.log(selectedPeopleList);
+          });
+        };            
+      });
+    }
+
 
 module.exports = dbFunctions;
