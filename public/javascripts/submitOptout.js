@@ -49,14 +49,14 @@ function main(){
 	});*/
 
 	$('button[name="submit"]').click(function() {
-		var shifts = [];
+		var day = [];
 		$.each($("input[name='day']:checked"), function (){
-			shifts.push($(this).val());
+			day.push($(this).val());
 		});
 
 		var data = { 
 			Name: $("#name").val(), 
-			ATTU_ID: $("#ATTUID").val()
+			ATTU_ID: $("#ATTUID").val(),
 			Cancel: day
 		};
 		console.log(data); 

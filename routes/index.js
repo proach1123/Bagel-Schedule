@@ -84,7 +84,7 @@ router.get('/optout', function(req, res, next) {
 
 router.post('/optout', function(req, res, next){
 	console.log(req.body);
-	//mongoDbFunctions.findDocuments(req.body, "schedule");
+	mongoDbFunctions.updateDocument(req.body, "schedule");
 });
 
 module.exports = router;
