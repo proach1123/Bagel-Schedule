@@ -225,7 +225,7 @@ dbFunctions.algorithm = function(collectionName, callback){
         //sorted shifts based on number of volunteers
         console.log(shifts);
         
-
+        //WE'RE GOOD UP
 
         var selectedPeopleList = [];
 
@@ -246,7 +246,7 @@ dbFunctions.algorithm = function(collectionName, callback){
             },
 
             {
-              $match : { 'Available[]' : { $elemMatch : { $eq : shift.value } }, "record.ATTU_ID": { $nin : _.map(selectedPeopleList, 'ATTU_ID') } }
+              $match : { 'Available[]' : { $elemMatch : { $eq : shifts.value } }, "record.ATTU_ID": { $nin : _.map(selectedPeopleList, 'ATTU_ID') } }
             },
 
             { 
@@ -257,10 +257,10 @@ dbFunctions.algorithm = function(collectionName, callback){
                 //if documents are present then it will print the one who hasn't worked in the longest amount of time
                 
 
-              }).then(function (stuff) {
-                console.log("our results", stuff);
-                if (stuff && stuff.length){
-                  selectedPeopleList.push({ ATTU_ID : stuff[0].ATTU_ID, Name: stuff[0].Name });
+              }).then(function (res) {
+                console.log("results:" + res);
+                if (res && res.length){
+                  selectedPeopleList.push({ ATTU_ID : res[0].ATTU_ID, Name: res[0].Name });
                 }
               });
             });
@@ -268,7 +268,6 @@ dbFunctions.algorithm = function(collectionName, callback){
           })
           )
           .then(function(){
-            console.log("here");
             console.log(selectedPeopleList);
           });
         };            
