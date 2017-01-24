@@ -197,7 +197,7 @@ dbFunctions.updateDocument = function(data, shifts, collectionName, callback){
 dbFunctions.updateSchedule = function(data, shift, collectionName, callback){
   var collection = dbConnection.collection(collectionName);
   console.log(data);
-  dbFunctions.findDocuments ( {data.ATTU_ID, data.Cancel}, "Schedule", function (result) {
+  dbFunctions.findDocuments(data, "Schedule", function (result) {
     if (result){
       console.log(result);
     }
