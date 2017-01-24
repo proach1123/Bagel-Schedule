@@ -182,50 +182,18 @@ h3 {
 	color: #EF0000;
 }
 
+.Name-ATTU, .checkbox {
+	box-sizing: border-box;
+}
+
 p {
 	font-size: 30px;
 	text-align: center;
 }
 
-h4 {
-	font-size: 25px;
-	font-weight: 300;
-}
-
-h5 {
-	font-size: 25px;
-}
-
 .checkbox {
-	font-size: 20px;
-}
-
-.Name-ATTU {
-	font-size: 20px;
-	text-align: left;
-	padding-left: 580px;
-	position: relative;
-}
-
-.NameInput {
-	font-size: 20px;
-	text-align: left;
-	float: left;
-}
-
-.ATTUInput {
-	font-size: 20px;
-	text-align: left;
-	float: left;
-	padding-left: 20px;
-}
-
-.shiftBoxes {
-	box-sizing: border-box;
-}
-
-.shiftContentAll {
 	background: #F2F2F2;
+	font-size: 20px;
 	position: relative;
 	display: inline-block;
   	margin: 0px 2% 80px 2%;
@@ -234,23 +202,9 @@ h5 {
   	left: 550px;
 }
 
-.Pagename {
-	position: relative;
-	padding-bottom: 50px;
-}
-
-.dropdown {
-	color: #000000;
-	text-align: left;
-	padding-top: 25px;
-	font-size: 20px;
-	padding-left: 30px;
-	padding-bottom: 50px;
-}
-
-.Shift {
-	padding-top: 20px;
-	padding-left: 580px;
+h5 {
+	font: 'Abel', sans-serif;
+	font-size: 25px;
 	position: relative;
 }
 
