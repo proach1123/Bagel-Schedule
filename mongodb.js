@@ -201,7 +201,7 @@ dbFunctions.updateDocument = function(data, shifts, collectionName, callback){
 dbFunctions.algorithm = function(collectionName, callback){
     var collection = dbConnection.collection(collectionName);
 
-    var shifts = [ { value : 'setup' }, { value : '8:30' }, { value : '9:00' }, { value : '9:30' }, { value : '10:00' }, { value : 'cleanup1' }, { value: 'clean2'}];
+    var shifts = [ { value : 'setup' }, { value : '8:30' }, { value : '9:00' }, { value : '9:30' }, { value : '10:00' }, { value : 'cleanup1' }, { value: 'cleanup2'}];
 
     //fixes asynchronous code so all counts are found
     Promise.all(shifts.map(function(shift) {
