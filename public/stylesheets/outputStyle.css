@@ -1,68 +1,55 @@
 body {
 	color: #000000;
 	background-color: #FFFFFF;
-	height: 100%;
+	height: 100vh;
+	width: 100vw;
 	font-family: 'Abel', sans-serif;
 	margin: 0;
 	padding: 0;
 }
 
 #cover {
-	height: 500px;
+	height: 26.3vmax;
 	top: -20px;
 	position: relative;
-	width: 100%;
+	width: 100vmax;
 	background: url("../images/bagel-cover.jpg");
 	background-size: cover;
-	background-attachment: scroll;
+	background-attachment: fixed;
 }
 
 .coverContent{
 	margin: 0 auto;
 	text-align: center;
-	width: 70%;
+	width: 100vmax;
 }
 
-h1 {
+h1{
 	color: #FFFFFF;
 	font-family: 'Amatic SC', cursive;
 	text-align: center;
-	font-size: 250px;
-	line-height: 100px;
+	font-size: 13.15vmax;
 	position: relative;
-	top: 150px;
+	top: 3.33vmax;
+	
 }
 
-h3 {
+h3{
 	color: #FFFFFF;
 	font-family: 'Raleway', sans-serif;
 	text-align: center;
-	font-size: 50px;
+	font-size: 2.63vmax;
 	position: relative;
-	top: 200px;
-}
-
-h4 {
-	font-size: 30px;
-	text-align: center;
-}
-
-h5 {
-	font-size: 25px;
-	text-align: center;
-	position: relative;
-}
-
-p {
-	font-size: 18.64px;
-	text-align: center;
-	position: relative;
+	top: -20px;
+	line-height: 7.9vmax;
 }
 
 #navigate {
 	background-color: #404040;
-	position: relative;
-	top: -20px;
+	position: absolute;
+	top: 26.3vmax;
+	height: 2.63vmax;
+	width: 100vmax;
 }
 
 #navigate ul {
@@ -80,37 +67,37 @@ p {
 
 .menuLink {
 	color: #FFFFFF;
-	font-size: 20px;
+	font-size: 1.06vmax;
 	font-weight: 300;
-	padding-top: 9px;
-	padding-bottom: 16px;
-	padding-left: 20px;
-	padding-right: 20px;
+	padding-top: 0.48vmax;
+	padding-bottom: 0.88vmax;
+	padding-left: 1.1vmax;
+	padding-right: 0.83vmax;
 	margin: 0;
-	position: relative;
-	left: 92vw;
+	position: absolute;
+	left: 94.5vmax;
 	display: inline;
 }
 
 .homeLink{
 	color: #FFFFFF;
-	font-size: 20px;
+	font-size: 1.06vmax;
 	font-weight: 300;
-	padding-top: 9px;
-	padding-bottom: 16px;
-	padding-left: 20px;
-	padding-right: 15px;
+	padding-top: 0.48vmax;
+	padding-bottom: 0.88vmax;
+	padding-left: 1.1vmax;
+	padding-right: 0.83vmax;
 	margin: 0;
-	position: relative;
-	left: 83vw;
+	position: absolute;
+	left: 90vmax;
 	display: inline;
 }
 
 .attLogo {
-	height: 50px;
+	height: 2.63vmax;
 	width: auto;
-	position: relative;
-	left: -10px;
+	position: absolute;
+	left: -0.54vmax;
 	margin: 0;
 	margin-top: 0;
 	padding: 0;
@@ -130,41 +117,47 @@ p {
 	background-attachment: fixed;
 	color: #FFFFFF;
 	position: absolute;
-	top: 550px;
-	left: 1530px;
-	height: 100vh;
-	width: 20%;
+	top: 28.9vmax;
+	left: 79.7vmax;
+	height: 100vmin;
+	width: 18.88vmax;
 	float: right;
 	clear: both;
 	z-index: 1;
-	
 }
 
-#sidebar label {
-	font-size: 20px;
-	padding: 10px 10px;
+#sidebar label{
+	line-height: 0vmax;
+	position: absolute;
+	font-size: 1.05vmax;
+	margin: 3.5% 3% 3% 2.7%;
 }
 
-#sidebar ul {
+#sidebar ul{
+	position: relative;
 	margin: 0;
 	padding: 0;
 	list-style: none;
 }
 
 #sidebar li{
-	font-size: 15px;
-	padding: 10px 25px;
+	line-height: 0vmax;
+	position: relative;
+	font-size: 0.8vmax;
+	padding: 1.3% 0.65% 1.3% 1.3%;
+	margin: 3% 2.6% 0% 2.2%;
 }
 
-#sidebar hr {
+#sidebar hr{
+	position: relative;
 	width: 80%;
-	height: 1px;
+	height: 0.0525vmax;
 	display: block;
 	border: 0;
-	border-top: 1px solid #FFFFFF;
+	border-top: 0.0525vmax solid #FFFFFF;
 	padding: 0;
 	margin: 0;
-	margin-top: 20px;
+	margin-top: 1.05vmax;
 }
 
 .availabilityLink, .cancelShiftLink, .scheduleLink, .loginLink {
@@ -177,70 +170,39 @@ p {
 	background-color: #404040;
 }
 
-h4 {
-	text-align: left;
-	margin: 30px 20px;
-}
+/*Page Specific*/
 
-.dropdown {
+p {
 	position: relative;
-	left: -170px;
-}
-
-p{
 	font-size: 30px;
+	text-align: center;
+	margin-top: 50px;
 }
 
-#availabilityTable {
-	height: auto;
-	width: 70%;
-	margin: 40px 100px;
+h5 {
+	font: 'Abel', sans-serif;
+	font-size: 25px;
 	position: relative;
-	z-index: 0;
+	text-align: center;
+	padding-top: 20px;
+	padding-bottom: 30px;
+	font-weight: 700;
+	color: #3385ff;
 }
 
-table {
+.shiftContentAll {
 	font-size: 20px;
-	margin: 10px 20px;
-	margin-bottom: 200px;
+	position: relative;
+	display: inline-block;
+  	margin: 0px 2% 80px 2%;
+  	text-align: center;
+  	width: 40%;
+  	left: 550px;
 }
 
-td, th {
-	margin: 50px auto;
-	padding: 40px 20px;
-}
-
-td, .shiftHeader {
+.buttons {
+	margin: 10px 10px;
 	text-align: center;
-	height: 40px;
-	width: 10%;
-	border-left: 1px solid #CCE6FF;
-}
-
-.volunteerTopHeader, .volunteerHeader {
-	height: 60px;
-	width: 20%;
-}
-
-.shiftHeader {
-	text-align: center;
-}
-
-tr:nth-child(even) {
-	background-color: #E6E6E6;
-}
-
-tr:nth-child(odd) {
-	background-color: #F2F2F2;
-}
-
-.volunteerTopHeader, .shiftHeader {
-	background-color: #80DFFF;
-}
-
-.tableLabel {
-	color: #33CCFF;
-	font-size: 50px;
-	padding: 10px 10px;
-	margin-left: -30px;
+	top: -10s0px;
+	padding-bottom: 25px;
 }
