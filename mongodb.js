@@ -194,6 +194,22 @@ dbFunctions.updateDocument = function(data, shifts, collectionName, callback){
 */
 }
 
+dbFunctions.updateSchedule = function(data, shift, collectionName, callback){
+  var collection = dbConnection.collection(collectionName);
+  console.log(data);
+  dbFunctions.findDocuments ( {data.ATTU_ID, data.Cancel}, "Schedule", function (result) {
+    if (result){
+      console.log(result);
+    }
+  });
+  /*
+  collection.updateOne( { ATTU_ID : data.ATTU_ID }),
+    {$set: {data}}, function (err, result){
+      assert.equal(err, null);
+      assert.equal 1
+    }*/
+}
+
 //Algorithm for Schedule
 
 
