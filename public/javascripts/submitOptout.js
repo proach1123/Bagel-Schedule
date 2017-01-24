@@ -48,7 +48,7 @@ function main(){
 		$.post("/optout", data, function(){}, 'json');
 	});*/
 
-	$('button[name="submitDay"]').click(function() {
+	$('button[name="submit"]').click(function() {
 		var shifts = [];
 		$.each($("input[name='day']:checked"), function (){
 			shifts.push($(this).val());
