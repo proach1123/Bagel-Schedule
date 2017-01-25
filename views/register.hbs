@@ -4,7 +4,7 @@
 		<title> Bagel Day Scheduling Testing </title>
 		<link href="https://fonts.googleapis.com/css?family=Abel|Amatic+SC|Raleway:100,200,300,400,500,600,700,800,900" rel="stylesheet">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-		<link rel = "stylesheet" type = "text/css" href = "stylesheets/inputStyle.css">
+		<link rel = "stylesheet" type = "text/css" href = "stylesheets/register.css">
 	</head>
 
 	<body>
@@ -47,44 +47,34 @@
 		</div>
 
 		<div class = "description">
-			<p> Please input your information and your schedule availability for (month). </p>
-		<div class = "Name-ATTU">
-			<form class = "inputPageForm">
+			<p> Register </p>
+		<div class = "Reg-Log">
+			<form class = "regForm" action = "/signup" method = "post">
 				<div class = "form-horizontal">
-					<div class = NameInput>
-						<label for = "name"> Name: </label>
-						<input name = "name" type = "text" class = "form-control" id = "name" placeholder = "Name"> 
+					<div class = FirstNameInput>
+						<label for = "firstName"> First Name: </label>
+						<input name = "firstName" type = "text" class = "form-control" id = "firstName" placeholder = "First Name" maxlength="50"> 
 					</div>
-					<div class = ATTUInput>
-						<label for = "ATTUforUser"> ATTU ID: </label>
-						<input type = "text" class = "form-control" name = 'ATTUID' id = "ATTUID" placeholder = "ATTU ID">
+					<div class = LastNameInput>
+						<label for = "lastName"> Last Name: </label>
+						<input name = "lastName" type = "text" class = "form-control" id = "lastName" placeholder = "Last Name" maxlength="50"> 
+					</div>
+					<div class = EmailInput>
+						<label for = "email"> Email: </label>
+						<input type = "text" class = "form-control" name = 'email' id = "email" placeholder = "Email@website.net" maxlength="50">
+					</div>
+					<div class = PasswordInput>
+						<label for = "password"> Password: </label>
+						<input name = "password" type = "password" class = "form-control" id = "password" placeholder = "Password" maxlength="50"> 
 					</div>
 				</div>
-
-				<div class = "Shift">
-					<h4> Shift: </h4>
-				</div>
-				<div class = "shiftBoxes">
-					<div class = "shiftContentAll">
-						<div class = "checkbox">
-							<label>
-								<input type = "checkbox"  name = 'shift' id = 'shift1' value = "setup"> <label for = "setup"> Setup </label> <br>
-								<input type = "checkbox"  name = "shift" id = "shift2" value = "8:30"> <label for = "shift_8:30"> 8:30 - 9:00 </label> <br>
-								<input type = "checkbox"  name = "shift" id = "shift3" value = "9:00"> <label for = "shift_9:00"> 9:00 - 9:30 </label> <br>
-								<input type = "checkbox"  name = "shift" id = "shift4" value = "9:30"> <label for = "shift_9:30"> 9:30 - 10:00 </label> <br>
-								<input type = "checkbox"  name = "shift" id = "shift5" value = "10:00"> <label for = "shift_10:00"> 10:00 - 10:30 </label> <br>
-								<input type = "checkbox"  name = "shift" id = "shift6" value = "cleanup"> <label for = "cleanup"> Clean up </label> <br>
-							</label>
-						</div>
-					</div>
+				<div class = "buttons">
+					<button class = "btn btn-info btn-lg" name = "Register" type="submit"> Register </button>
+					<button class = "btn btn-default btn-lg" name = "clear"> Clear </button>
 				</div>
 			</form>
 		</div>
-
-		<div class = "buttons">
-			<button class = "btn btn-info btn-lg" name = "submit"> Submit </button>
-			<button class = "btn btn-default btn-lg" name = "clear"> Clear </button>
-		</div>
+		
 		<script src = "javascripts/Sidebar-Navigation.js"> </script>
 		<script src = "javascripts/submit.js"> </script>
 	</body>
