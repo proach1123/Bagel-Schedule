@@ -170,44 +170,15 @@ dbFunctions.findDocuments = function(data, collectionName, callback){
 
 //Update a document
 
-dbFunctions.updateDocument = function(data, shifts, collectionName, callback){
+dbFunctions.updateDocument = function(id, date, collectionName, callback){
   var collection = dbConnection.collection(collectionName);
-  var bulk = collection.initializeUnorderedBulkOp();
-      bulk.find( { ATTU_ID: data.ATTU_ID }).upsert().replaceOne({
-        Name: data.Name,
-        ATTU_ID: data.ATTU_ID, 
-        Available: data.Available,
-      });
-      bulk.execute();
-  /*
-  //Get the documents collection
-  var collection = dbConnection.collection(collectionName);
-  console.log(data);
-  collection.updateOne({ _id: data._id },
-    {$set: data}, function (err, result) {
+  collection.updateOne({ "ATTU_ID" : id},
+    { $set : { "lastShift" : date } },
+    function (err, res) {
       assert.equal(err, null);
       assert.equal(1, result.result.n);
-      if(typeof callback === 'function') {
-        callback(result);
-      }
+      callback(res);
     });
-*/
-}
-
-dbFunctions.updateSchedule = function(data, shift, collectionName, callback){
-  var collection = dbConnection.collection(collectionName);
-  console.log(data);
-  dbFunctions.findDocuments(data, "Schedule", function (result) {
-    if (result){
-      console.log(result);
-    }
-  });
-  /*
-  collection.updateOne( { ATTU_ID : data.ATTU_ID }),
-    {$set: {data}}, function (err, result){
-      assert.equal(err, null);
-      assert.equal 1
-    }*/
 }
 
 //Algorithm for Schedule
@@ -243,17 +214,28 @@ dbFunctions.algorithm = function(collectionName, callback){
         
         //WE'RE GOOD UP
 
-        var selectedPeopleList = [];
+        var selectedPeopleMap = {};
+        var selectPersonPromiseList = [];
 
-        var sequentially = function(shifts) {
-        
-        var p = Promise.resolve();
+        for (var i = 0; i < shifts.length; i++){
+          var previousPromise = i > 0 ? selectPersonPromiseList[i-1] : new Promise(function(resolve, reject) { resolve(); });
+          selectPersonPromiseList[i] = selectNextPerson(collection, shifts[i], selectedPeopleMap, previousPromise);
+        }
 
-          Promise.all(shifts.map (function (){
-            p=p.then( function() { return collection.aggregate([
-            {
-              $lookup: 
-                {
+        selectPersonPromiseList[selectPersonPromiseList.length-1].then( function (){
+          dbFunctions.insertDocuments(selectedPeopleMap, "Schedule");
+          date = new Date();
+          console.log("id" + selectedPeopleMap.ATTU_ID);
+          // dbFunctions.updateDocument(selectedPeopleMap.ATTU_ID, date, "personRecord");
+        });
+    });
+}
+
+function selectNextPerson(collection, shift, selectedPeopleMap, previousPromise){
+  return new Promise(function(resolve, reject) {
+    previousPromise.then(function() {
+      collection.aggregate([
+            { $lookup: {
                   from: "personRecord",
                   localField: "ATTU_ID",
                   foreignField: "ATTU_ID",
@@ -261,34 +243,20 @@ dbFunctions.algorithm = function(collectionName, callback){
                 } 
             },
 
-            {
-              $match : { 'Available[]' : { $elemMatch : { $eq : shifts.value } }, "record.ATTU_ID": { $nin : _.map(selectedPeopleList, 'ATTU_ID') } }
-            },
+            { $match : { 'Available[]' : { $elemMatch : { $eq : shift.value } }, "record.ATTU_ID": { $nin : _.map(selectedPeopleMap, 'ATTU_ID') } } },
 
-            { 
-              $sort : { "record.lastShift" : 1 }
-            }
+            { $sort : { "record.lastShift" : 1 } }
               ]).toArray(function(err, docs){ 
                 assert.equal(err, null);
-                //if documents are present then it will print the one who hasn't worked in the longest amount of time
-                
+                if (docs && docs.length){
+                  selectedPeopleMap[shift.value] = { ATTU_ID : docs[0].ATTU_ID, Name: docs[0].Name };
+                  resolve();
 
-              }).then(function (res) {
-                console.log("results:" + res);
-                if (res && res.length){
-                  selectedPeopleList.push({ ATTU_ID : res[0].ATTU_ID, Name: res[0].Name });
                 }
               });
-            });
-            return p;
-          })
-          )
-          .then(function(){
-            console.log(selectedPeopleList);
-          });
-        };            
-      });
-    }
+    });          
+  });
+}
 
 
 module.exports = dbFunctions;
