@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> Bagel Day Scheduling Testing </title>
+		<link href="https://fonts.googleapis.com/css?family=Abel|Amatic+SC|Raleway:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<link rel = "stylesheet" type = "text/css" href = "stylesheets/register.css">
+	</head>
+
+	<body>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+		<div id = "cover">
+			<div class = "coverContent">
+				<h1> Bagel Day </h1>
+				<h3> Wednesdays couldn't possibly get better. </h3>
+			</div>
+		</div>
+
+		<div id = "navigate">
+			<ul> 
+				<li> <img src = "images/att.jpg" alt = "ATT Logo" class = "attLogo"> </li>
+				<li> <div class = "menuLink"> Menu </div> </li>
+				<li> <div class = "homeLink"> Home </div> </li>
+			</ul>
+		</div>
+
+		<div id = "sidebar">
+			<div class = "sidebarContent">
+				<div class = "sidebarLists">
+					<label for = "voluteerList"> Volunteer </label>
+					<ul>
+						<li> <div class = "availabilityLink"> Sign Up for Shifts </div> </li>
+						<li> <div class = "cancelShiftLink"> Cancel Shifts </div> </li>
+					</ul>
+					<hr>
+					<label for = "adminList"> Admin </label>
+					<ul>
+						<li> <div class = "scheduleLink"> Schedule </div> </li>
+					</ul>
+					<hr>
+					<ul>
+						<li> <div class = "loginLink"> Login </div> </li>
+						<li> <div class = "signupLink"> Register </div> </li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<div class = "description">
+			<p> Register </p>
+		<div class = "Reg-Log">
+			<form class = "regForm" action = "/signup" method = "post">
+				<div class = "form-horizontal">
+					<div class = FirstNameInput>
+						<label for = "firstName"> First Name: </label>
+						<input name = "firstName" type = "text" class = "form-control" id = "firstName" placeholder = "First Name" maxlength="50"> 
+					</div>
+					<div class = LastNameInput>
+						<label for = "lastName"> Last Name: </label>
+						<input name = "lastName" type = "text" class = "form-control" id = "lastName" placeholder = "Last Name" maxlength="50"> 
+					</div>
+					<div class = EmailInput>
+						<label for = "email"> Email: </label>
+						<input type = "text" class = "form-control" name = 'email' id = "email" placeholder = "Email@website.net" maxlength="50">
+					</div>
+					<div class = PasswordInput>
+						<label for = "password"> Password: </label>
+						<input name = "password" type = "password" class = "form-control" id = "password" placeholder = "Password" maxlength="50"> 
+					</div>
+				</div>
+				<div class = "buttons">
+					<button class = "btn btn-info btn-lg" name = "Register" type="submit"> Register </button>
+					<button class = "btn btn-default btn-lg" name = "clear"> Clear </button>
+				</div>
+			</form>
+		</div>
+		
+		<script src = "javascripts/Sidebar-Navigation.js"> </script>
+		<script src = "javascripts/submit.js"> </script>
+	</body>
+</html>

@@ -160,7 +160,7 @@ h3{
 	margin-top: 1.05vmax;
 }
 
-.availabilityLink, .cancelShiftLink, .scheduleLink, .loginLink {
+.availabilityLink, .cancelShiftLink, .scheduleLink, .loginLink, .signupLink {
 	color: #80DFFF;
 	padding: 1.05vmax;
 	margin: 1.575vmax 1.575vmax 0vmax 1.575vmax;

@@ -28,6 +28,16 @@ function main() {
 		$(this).toggleClass('activeSidebar');
 	});
 
+	$('.loginLink').on('click', function (){
+		location.href = "/login";
+		$(this).toggleClass('activeSidebar');
+	});
+
+	$('.signupLink').on('click', function (){
+		location.href = "/signup";
+		$(this).toggleClass('activeSidebar');
+	});
+
 	$('.menuLink').mouseenter(function(){
 		$(this).toggleClass('onNavigation');
 	});
@@ -65,6 +75,22 @@ function main() {
 	});
 
 	$('.scheduleLink').mouseleave(function(){
+		$(this).toggleClass('onSidebar');
+	});
+
+	$('.loginLink').mouseenter(function(){
+		$(this).toggleClass('onSidebar');
+	});
+
+	$('.loginLink').mouseleave(function(){
+		$(this).toggleClass('onSidebar');
+	});
+
+	$('.signupLink').mouseenter(function(){
+		$(this).toggleClass('onSidebar');
+	});
+
+	$('.signupLink').mouseleave(function(){
 		$(this).toggleClass('onSidebar');
 	});
 }
