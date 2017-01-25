@@ -1,6 +1,8 @@
 //Connects to the MONGO Database
 
 var MongoClient = require('mongodb').MongoClient, assert = require('assert');
+var Q = require('q');
+var _ = require('lodash');
 
 //connection URL
 var url = 'mongodb://localhost:3000';
@@ -58,101 +60,92 @@ dbFunctions.findDocuments = function(data, collectionName, callback){
 
 //Update a document
 
-dbFunctions.updateDocument = function(data, collectionName, callback){
-  //Get the documents collection
+dbFunctions.updateDocument = function(id, date, collectionName, callback){
   var collection = dbConnection.collection(collectionName);
-  console.log(data);
-  collection.updateOne({ _id: data._id },
-    {$set: data}, function (err, result) {
+  collection.updateOne({ "ATTU_ID" : id},
+    { $set : { "lastShift" : date } },
+    function (err, res) {
       assert.equal(err, null);
       assert.equal(1, result.result.n);
-      if(typeof callback === 'function') {
-        callback(result);
-      }
+      callback(res);
     });
 }
-
-dbFunctions.aggregateDocuments = function(data, collectionName, callback){
-  //Get the document collection
-  var collection = dbConnection.collection(collectionName);
-  collection.aggregate([
-    {
-      $lookup:
-      {
-        from: "personRecord",
-        localField: "ATTU_ID",
-        foreignField: "ATTU_ID",
-        as: "record"
-      }
-    }
-  ])
-  var tester = collection.find({ 'lastShift' : "null" }).toArray(function(err, docs){ 
-    assert.equal(err, null);
-
-  });
-  //console.log(tester);
-}
-
 
 //Algorithm for Schedule
 
 
+
 dbFunctions.algorithm = function(collectionName, callback){
-  var collection = dbConnection.collection(collectionName);
+    var collection = dbConnection.collection(collectionName);
 
-//order the shifts in order of number of volunteers
-  var shifts = [ { value : 'setup' }, { value : '8:30' }, { value : '9:00' }, { value : '9:30' }, { value : '10:00' }, { value : 'cleanup' } ];
-  
-  var promiseList = [];
-  for(var i=0; i < shifts.length; i++) {
-    promiseList[i] = Q.defer();
-  }
-  
-  var count = 0;
-  var finalpromise =  Q.defer();
-  for ( var j=0; j<shifts.length; j++ ){
-    var promise=promiseList[j];
-    if(j===0){
-      var shift = shifts[count];
-      var innerPromise = promiseList[count+1];
-    
-      collection.find({ 'Available[]' : { $elemMatch : { $eq : shifts[count].value } } }).toArray(function(err, result) {
-         shift.count = result.length;
-         //console.log(shift.count);
-         count++;
-         innerPromise.resolve();
-      });
-     
-    }
-    else{
-    promise.promise.then(function () {
-    var shift = shifts[count];
-    if(count<promiseList.length-1){
-    var innerPromise = promiseList[count+1];
-    }
-      collection.find({ 'Available[]' : { $elemMatch : { $eq : shifts[count].value } } }).toArray(function(err, result) {
-         shift.count = result.length;
-         count++;
-         if (count<promiseList.length){
-          innerPromise.resolve();
-         }
-         else{
-          finalpromise.resolve();
-         }
-      });
-         
-     });
-    }
-   }
-   finalpromise.promise.then(function () {
-  Q.all(promiseList).done(function(value){
-    shifts.sort(function (value1, value2){
-    return value1.count - value2.count;
+    var shifts = [ { value : 'setup' }, { value : '8:30' }, { value : '9:00' }, { value : '9:30' }, { value : '10:00' }, { value : 'cleanup1' }, { value: 'cleanup2'}];
+
+    //fixes asynchronous code so all counts are found
+    Promise.all(shifts.map(function(shift) {
+        return new Promise(function(resolve, reject) {
+
+            //goes to availability_Next collections and looks for number of volunteers per shift
+            collection.find({ 'Available[]' : { $elemMatch : { $eq : shift.value } } }).toArray(function(err, result) {
+                shift.count = result.length;
+                resolve();
+            });
+        });
+
+    //After fulfilling the promises of finding each count will continue on with the code
+
+    })).then(function(results) {
+        //sorts shifts based on number of volunteers
+        shifts.sort(function (value1, value2){
+            return value1.count - value2.count;
+        });
+
+        //sorted shifts based on number of volunteers
+        console.log(shifts);
+        
+        //WE'RE GOOD UP
+
+        var selectedPeopleMap = {};
+        var selectPersonPromiseList = [];
+
+        for (var i = 0; i < shifts.length; i++){
+          var previousPromise = i > 0 ? selectPersonPromiseList[i-1] : new Promise(function(resolve, reject) { resolve(); });
+          selectPersonPromiseList[i] = selectNextPerson(collection, shifts[i], selectedPeopleMap, previousPromise);
+        }
+
+        selectPersonPromiseList[selectPersonPromiseList.length-1].then( function (){
+          dbFunctions.insertDocuments(selectedPeopleMap, "Schedule");
+          date = new Date();
+          console.log("id" + selectedPeopleMap.ATTU_ID);
+          // dbFunctions.updateDocument(selectedPeopleMap.ATTU_ID, date, "personRecord");
+        });
     });
-    //console.log(shifts);
-  });
-});
+}
 
+function selectNextPerson(collection, shift, selectedPeopleMap, previousPromise){
+  return new Promise(function(resolve, reject) {
+    previousPromise.then(function() {
+      collection.aggregate([
+            { $lookup: {
+                  from: "personRecord",
+                  localField: "ATTU_ID",
+                  foreignField: "ATTU_ID",
+                  as: "record"
+                } 
+            },
+
+            { $match : { 'Available[]' : { $elemMatch : { $eq : shift.value } }, "record.ATTU_ID": { $nin : _.map(selectedPeopleMap, 'ATTU_ID') } } },
+
+            { $sort : { "record.lastShift" : 1 } }
+              ]).toArray(function(err, docs){ 
+                assert.equal(err, null);
+                if (docs && docs.length){
+                  selectedPeopleMap[shift.value] = { ATTU_ID : docs[0].ATTU_ID, Name: docs[0].Name };
+                  resolve();
+
+                }
+              });
+    });          
+  });
 }
 
 module.exports = dbFunctions;

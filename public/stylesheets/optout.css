@@ -1,54 +1,55 @@
 body {
 	color: #000000;
 	background-color: #FFFFFF;
-	height: 100%;
+	height: 100vh;
+	width: 100vw;
 	font-family: 'Abel', sans-serif;
 	margin: 0;
 	padding: 0;
 }
 
-/* Here is the basic elements for all pages */
-
 #cover {
-	height: 500px;
+	height: 26.3vmax;
 	top: -20px;
 	position: relative;
-	width: 100%;
+	width: 100vmax;
 	background: url("../images/bagel-cover.jpg");
 	background-size: cover;
-	background-attachment: scroll;
+	background-attachment: fixed;
 }
 
 .coverContent{
 	margin: 0 auto;
 	text-align: center;
-	width: 70%;
+	width: 100vmax;
 }
 
-h1 {
+h1{
 	color: #FFFFFF;
 	font-family: 'Amatic SC', cursive;
 	text-align: center;
-	font-size: 250px;
-	line-height: 100px;
+	font-size: 13.15vmax;
 	position: relative;
-	top: 150px;
+	top: 3.33vmax;
 	
 }
 
-h3 {
+h3{
 	color: #FFFFFF;
 	font-family: 'Raleway', sans-serif;
 	text-align: center;
-	font-size: 50px;
+	font-size: 2.63vmax;
 	position: relative;
-	top: 200px;
+	top: -20px;
+	line-height: 7.9vmax;
 }
 
 #navigate {
 	background-color: #404040;
-	position: relative;
-	top: -20px;
+	position: absolute;
+	top: 26.3vmax;
+	height: 2.63vmax;
+	width: 100vmax;
 }
 
 #navigate ul {
@@ -66,37 +67,37 @@ h3 {
 
 .menuLink {
 	color: #FFFFFF;
-	font-size: 20px;
+	font-size: 1.06vmax;
 	font-weight: 300;
-	padding-top: 9px;
-	padding-bottom: 16px;
-	padding-left: 20px;
-	padding-right: 20px;
+	padding-top: 0.48vmax;
+	padding-bottom: 0.88vmax;
+	padding-left: 1.1vmax;
+	padding-right: 0.83vmax;
 	margin: 0;
-	position: relative;
-	left: 92vw;
+	position: absolute;
+	left: 94.5vmax;
 	display: inline;
 }
 
 .homeLink{
 	color: #FFFFFF;
-	font-size: 20px;
+	font-size: 1.06vmax;
 	font-weight: 300;
-	padding-top: 9px;
-	padding-bottom: 16px;
-	padding-left: 20px;
-	padding-right: 15px;
+	padding-top: 0.48vmax;
+	padding-bottom: 0.88vmax;
+	padding-left: 1.1vmax;
+	padding-right: 0.83vmax;
 	margin: 0;
-	position: relative;
-	left: 83vw;
+	position: absolute;
+	left: 90vmax;
 	display: inline;
 }
 
 .attLogo {
-	height: 50px;
+	height: 2.63vmax;
 	width: auto;
-	position: relative;
-	left: -10px;
+	position: absolute;
+	left: -0.54vmax;
 	margin: 0;
 	margin-top: 0;
 	padding: 0;
@@ -116,40 +117,47 @@ h3 {
 	background-attachment: fixed;
 	color: #FFFFFF;
 	position: absolute;
-	top: 550px;
-	left: 1530px;
-	height: 100vh;
-	width: 20%;
+	top: 28.9vmax;
+	left: 79.7vmax;
+	height: 100vmin;
+	width: 18.88vmax;
 	float: right;
 	clear: both;
 	z-index: 1;
 }
 
 #sidebar label{
-	font-size: 20px;
-	padding: 10px 10px;
+	line-height: 0vmax;
+	position: absolute;
+	font-size: 1.05vmax;
+	margin: 3.5% 3% 3% 2.7%;
 }
 
 #sidebar ul{
+	position: relative;
 	margin: 0;
 	padding: 0;
 	list-style: none;
 }
 
 #sidebar li{
-	font-size: 15px;
-	padding: 10px 25px;
+	line-height: 0vmax;
+	position: relative;
+	font-size: 0.8vmax;
+	padding: 1.3% 0.65% 1.3% 1.3%;
+	margin: 3% 2.6% 0% 2.2%;
 }
 
 #sidebar hr{
+	position: relative;
 	width: 80%;
-	height: 1px;
+	height: 0.0525vmax;
 	display: block;
 	border: 0;
-	border-top: 1px solid #FFFFFF;
+	border-top: 0.0525vmax solid #FFFFFF;
 	padding: 0;
 	margin: 0;
-	margin-top: 20px;
+	margin-top: 1.05vmax;
 }
 
 .availabilityLink, .cancelShiftLink, .scheduleLink, .loginLink, .signupLink {
@@ -164,29 +172,17 @@ h3 {
 
 /* Page specific conent */
 
-.instructions {
+p {
+	position: relative;
 	font-size: 30px;
 	text-align: center;
-	position: relative;
-
+	margin-top: 50px;
 }
 
-#shiftOptout p{
-	text-align: center;
-	font-size: 25px;
-	margin: 20px 20px;
-}
-
-h5{
+h5 {
 	font: 'Abel', sans-serif;
 	font-size: 25px;
-	padding-top: 20px;
-	padding-left: 580px;
 	position: relative;
-}
-
-.shiftBoxes, .dayBoxes {
-	box-sizing: border-box;
 }
 
 .shiftContentAll {
@@ -200,12 +196,9 @@ h5{
   	left: 550px;
 }
 
-#dayOptout p{
+.buttons {
+	margin: 10px 10px;
 	text-align: center;
-	font-size: 25px;
-	margin: 20px 20px;
-}
-
-.instructionShift, .instructionDay {
-	text-align: 25px;
+	top: -10s0px;
+	padding-bottom: 25px;
 }

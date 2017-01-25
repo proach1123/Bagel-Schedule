@@ -46,97 +46,80 @@
 			</div>
 		</div>
 
-		<h4> Key: Red - no volunteers; Yellow - only one volunteer</h4>
-		<div class = "dropdown">
-			<p> Select Date:
-				<select name = "month">
-					<option> Month </option>
-					<option> </option>
-					<option> January </option>
-					<option> February </option>
-					<option> March </option>
-					<option> April </option>
-					<option> May </option>
-					<option> June </option>
-					<option> July </option>
-					<option> August </option>
-					<option> September </option>
-					<option> October </option>
-					<option> November </option>
-					<option> December </option>
-				</select>
-				<select name = "day">
-					<option> Day </option>
-					<option> </option>
-					<option> Date 1 </option>
-					<option> Date 2 </option>
-					<option> Date 3 </option>
-					<option> Date 4 </option>
-				</select>
-			</p>
+		<div id = "Greeting">
+			<p> Welcome, here are the current issues that should be brought to your attention </p>
 		</div>
 
-		<div id = "availabilityTable">
-			<table class = "table">
-				<tr class = "tableHeader">
-					<th scope = "col" class = "volunteerTopHeader"> Volunteers (ATTUID) </th>
-					<th scope = "col" class = "shiftHeader"> Setup </th>
-					<th scope = "col" class = "shiftHeader"> 8:30 - 9:00 </th>
-					<th scope = "col" class = "shiftHeader"> 9:00 - 9:30 </th>
-					<th scope = "col" class = "shiftHeader"> 9:30 - 10:00 </th>
-					<th scope = "col" class = "shiftHeader"> 10:00 - 10:30 </th>
-					<th scope = "col" class = "shiftHeader"> Clean Up </th>
-				<tr> 
-					<th class = "volunteerHeader"> Volunteer 1 (ATTUID 1) </td>
-					<td> Available </td>
-					<td> Available </td>
-					<td> </td>
-					<td class = "danger"> </td>
-					<td class = "warning"> Available</td>
-					<td> </td>
-				</tr>
-
-				<tr> 
-					<th class = "volunteerHeader"> Volunteer 2 (ATTUID 2) </td>
-					<td> </td>
-					<td> Available</td>
-					<td> </td>
-					<td class = "danger"> </td>
-					<td class = "warning"> </td>
-					<td> Available</td>
-				</tr>
-
-				<tr> 
-					<th class = "volunteerHeader"> Volunteer 3 (ATTUID 3) </td>
-					<td> Available</td>
-					<td> Available</td>
-					<td> Available</td>
-					<td class = "danger"> </td>
-					<td class = "warning"> </td>
-					<td> Available</td>
-				</tr>
-
-				<tr>
-					<th class = "volunteerHeader"> Volunteer 4 (ATTUID 4) </td>
-					<td> Available</td>
-					<td> </td>
-					<td> Available</td>
-					<td class = "danger"> </td>
-					<td class = "warning"> </td>
-					<td> Available</td>
-				</tr>
-
-				<tr> 
-					<th class = "volunteerHeader"> Volunteer 5 (ATTUID 5) </td>
-					<td> Available</td>
-					<td> </td>
-					<td> Available</td>
-					<td class = "danger"> </td>
-					<td class = "warning"> </td>
-					<td> </td>
-				</tr>
-			</table>
+		<div id ="cancelList">
+			<h5> Here is the list of recent cancellations </h5>
 		</div>
+
+		<div id = "noVolunteers">
+			<h5> Here are the shifts that no one is avaiable for </h5>
+		</div>
+
+		<div id = "announcement">
+			<h5> Announce a fullday cancellation </h5>
+			<div class = "shiftContentAll">
+				<form>
+					<label>
+						<input type = "checkbox"  name = "day" value = "day1"> <label class = 'date'> Wednesday 1 </label> <br>
+						<input type = "checkbox"  name = "day" value = "day2"> <label class = 'date'> Wednesday 2 </label> <br>
+						<input type = "checkbox"  name = "day" value = "day3"> <label class = 'date'> Wednesday 3 </label> <br>
+						<input type = "checkbox"  name = "day" value = "day4"> <label class = 'date'> Wednesday 4 </label> <br>
+						<div class = "date5">
+							<input type = "checkbox"  name = "day" value = "day5"> <label class = "date"> Wednesday 5 </label> <br>
+						</div>
+					</label>
+				</form>
+			</div>
+			<script>
+				var weds;
+				function Wednesdays(){
+				var l;
+				var d=new Date();
+				var m=["January","February","March","April","May","June","July","August","September","October","November","December"]
+				var month=d.getMonth();
+				var wedarray=[];
+				if(month==0||month==2||month==4||month==6||month==7||month==9||month==11){
+					l=31;
+				}
+				else if(month!=1){
+					l=30;
+				}
+				else if(year%4==0&&year%100==0&&year%1000!=0){
+					l=29;
+				}
+				else{
+					l=28;
+				}
+				for(var w=1;w<=l;w=w+1){
+					d.setDate(w);
+					if(d.getDay()==3){
+						console.log(d);
+			   			wedarray.push(m[d.getMonth()]+' '+d.getDate()+', '+d.getFullYear());
+			   		}
+				}
+				return wedarray;
+				}
+				weds=Wednesdays();
+				document.getElementsByClassName("date")[0].innerHTML='Wednesday, '+weds[0];
+				document.getElementsByClassName("date")[1].innerHTML='Wednesday, '+weds[1];
+				document.getElementsByClassName("date")[2].innerHTML='Wednesday, '+weds[2];
+				document.getElementsByClassName("date")[3].innerHTML='Wednesday, '+weds[3];
+				if(weds[4]===undefined){
+					document.getElementsByClassName("date")[4].innerHTML='';
+					document.getElementsByClassName("date5")[0].innerHTML='';
+				}
+				else{
+					document.getElementsByClassName("date")[4].innerHTML='Wednesday, '+weds[4];
+				}
+			</script>	
+		</div>
+		<div class = "buttons">
+			<button class = "btn btn-info btn-lg" name = "announce"> Create Announcement </button>
+		</div>
+		
 	<script src = "javascripts\Sidebar-Navigation.js"> </script>
 	</body>
 </html>

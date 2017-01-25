@@ -11,9 +11,9 @@
 			
 			<!-- Here is the basic elements for all pages -->
 
-			<div id = "cover">
+		<div id = "cover">
 			<div class = "coverContent">
-				<h1> Bagel Day </h1>
+				<h1> Bagel Wednesday </h1>
 				<h3> Wednesdays couldn't possibly get better. </h3>
 			</div>
 		</div>
@@ -48,136 +48,91 @@
 			</div>
 		</div>
 
-			<!-- Page specific conent -->
+		<!-- Page specific conent -->
 
-			<div class = "instructions">
-				<p> Cancellation Option:
-					<select class = "cancelOption">
-						<option value = " " selected> Type </option>
-						<option value = " "> </option>
-						<option value = "shift"> Shift </option>
-						<option value = "day"> Day </option>
-					</select>
-				</p>
-			</div>
+		<div class = "description">
+			<p> Please checkoff which date(s) you would like to cancel in the current month for. </p>
+		</div>
 
-			<div id = "shiftOptout">
 
-				<div class = "instructionsShift">
-					<p> Input the shifts you are not available for your selected date. </p>
-				</div>
-				
-				<p class = "selectionDateShift"> Date: 
-					<select name = "month">
-						<option> Month </option>
-						<option> </option>
-						<option> January </option>
-						<option> February </option>
-						<option> March </option>
-						<option> April </option>
-						<option> May </option>
-						<option> June </option>
-						<option> July </option>
-						<option> August </option>
-						<option> September </option>
-						<option> October </option>
-						<option> November </option>
-						<option> December </option>
-					</select>
-				</p>
-				
-				<div class = "shiftBoxes">
-						<div class = "shiftContentAll">
-							<div class = "checkbox">
-								<form>
-									<div class = "form-horizontal">
-										<div class = 'NameInput'>
-											<label for = "name"> Name: </label>
-											<input name = "nameOptout" type = "text" class = "form-control" id = "nameOptout" placeholder = "Name"> 
-										</div>
+		<div class = "shiftBoxes">
+				<div class = "shiftContentAll">
+					<div class = "checkbox">
+						<form>
+							<div class = "form-horizontal">
+								<div class = 'NameInput'>
+									<label for = "name"> Name: </label>
+									<input name = "name" type = "text" class = "form-control" id = "name" placeholder = "Name"> 
+								</div>
 
-										<div class = ATTUInput>
-											<label for = "ATTUforUser"> ATTU ID: </label>
-											<input type = "text" class = "form-control" name = 'ATTUIDOptout' id = "ATTUIDOptout" placeholder = "ATTU ID">
-										</div>
-									</div>
-
-									<select name = "day">
-										<option> Day </option>
-										<option> </option>
-										<option name = "dayShift" id = "dayShift1" value = "Date1"> Date 1 </option>
-										<option name = "dayShift" id = "dayShift2" value = "Date2"> Date 2 </option>
-										<option name = "dayShift" id = "dayShift3" value = "Date3"> Date 3 </option>
-										<option name = "dayShift" id = "dayShift4" value = "Date4"> Date 4 </option>
-									</select>
-
-									<h5> Shift: </h5>
-
-									<label>
-										<input type = "checkbox"  name = "shift" id = "shift1" value = "setup"> Setup <br>
-										<input type = "checkbox"  name = "shift" id = "shift2" value = "shift_8:30"> 8:30 - 9:00 <br>
-										<input type = "checkbox"  name = "shift" id = "shift3" value = "shift_9:00"> 9:00 - 9:30 <br>
-										<input type = "checkbox"  name = "shift" id = "shift4" value = "shift_9:30"> 9:30 - 10:00 <br>
-										<input type = "checkbox"  name = "shift" id = "shift5" value = "shift_10:00"> 10:00 - 10:30 <br>
-										<input type = "checkbox"  name = "shift" id = "shift6" value = "shift_cleanup"> Clean up <br>
-									</label>
-								</form>
+							<div class = ATTUInput>
+								<label for = "ATTUforUser"> ATTU ID: </label>
+								<input type = "text" class = "form-control" name = 'ATTUID' id = "ATTUID" placeholder = "ATTU ID">
 							</div>
 						</div>
+
+							<h5> Cancellation Date: </h5>
+
+							<label>
+								<input type = "checkbox"  name = "day" value = "day1"> <label class = 'date'> Wednesday 1 </label> <br>
+								<input type = "checkbox"  name = "day" value = "day2"> <label class = 'date'> Wednesday 2 </label> <br>
+								<input type = "checkbox"  name = "day" value = "day3"> <label class = 'date'> Wednesday 3 </label> <br>
+								<input type = "checkbox"  name = "day" value = "day4"> <label class = 'date'> Wednesday 4 </label> <br>
+								<div class = "date5">
+									<input type = "checkbox"  name = "day" value = "day5"> <label class = "date"> Wednesday 5 </label> <br>
+								</div>
+							</label>
+						</form>
 					</div>
-					<div class = "buttons">
-						<button class = "btn btn-default btn-lg" name = "submitShift"> Submit </button>
-					</div>
-				</div>
+					<script>
+						var weds;
+						function Wednesdays(){
+						var l;
+						var d=new Date();
+						var m=["January","February","March","April","May","June","July","August","September","October","November","December"]
+						var month=d.getMonth();
+						var wedarray=[];
+						if(month==0||month==2||month==4||month==6||month==7||month==9||month==11){
+							l=31;
+						}
+						else if(month!=1){
+							l=30;
+						}
+						else if(year%4==0&&year%100==0&&year%1000!=0){
+							l=29;
+						}
+						else{
+							l=28;
+						}
+						for(var w=1;w<=l;w=w+1){
+				   			d.setDate(w);
+							if(d.getDay()==3){
+								console.log(d);
+				       			wedarray.push(m[d.getMonth()]+' '+d.getDate()+', '+d.getFullYear());
+				       		}
+						}
+						return wedarray;
+					}
+					weds=Wednesdays();
+					document.getElementsByClassName("date")[0].innerHTML='Wednesday, '+weds[0];
+					document.getElementsByClassName("date")[1].innerHTML='Wednesday, '+weds[1];
+					document.getElementsByClassName("date")[2].innerHTML='Wednesday, '+weds[2];
+					document.getElementsByClassName("date")[3].innerHTML='Wednesday, '+weds[3];
+					if(weds[4]===undefined){
+						document.getElementsByClassName("date")[4].innerHTML='';
+						document.getElementsByClassName("date5")[0].innerHTML='';
+					}
+					else{
+						document.getElementsByClassName("date")[4].innerHTML='Wednesday, '+weds[4];
+					}
+				</script>	
 			</div>
+		</div>
 
-			<div id = "dayOptout">	
-
-				<div class = "instructionsDay">
-					<p> Input the days you are not available. </p>
-				</div>
-				
-				<p class = "selectionDateDay"> Date:
-					<select name = "month">
-						<option> Month </option>
-						<option> </option>
-						<option> January </option>
-						<option> February </option>
-						<option> March </option>
-						<option> April </option>
-						<option> May </option>
-						<option> June </option>
-						<option> July </option>
-						<option> August </option>
-						<option> September </option>
-						<option> October </option>
-						<option> November </option>
-						<option> December </option>
-					</select>
-				</p>
-
-				<h5> Day: </h5>
-				<div class = "dayBoxes">
-					<div class = "shiftContentAll">
-						<div class = "checkbox">
-							<form>
-								<label>
-									<input type = "checkbox"  name = "day1"> Day 1 <br>
-									<input type = "checkbox"  name = "day2"> Day 2 <br>
-									<input type = "checkbox"  name = "day3"> Day 3 <br>
-									<input type = "checkbox"  name = "day4"> Day 4 <br>
-								</label>
-							</form>
-						</div>
-					</div>
-				</div>
-
-				<div class = "buttons">
-					<button class = "btn btn-info btn-lg" name = "submitDay"> Submit </button>
-				</div>
-
-			</div>
-		</body>
+		<div class = "buttons">
+			<button class = "btn btn-info btn-lg" name = "submit"> Submit </button>
+		</div>
+	</body>
 	<script src = "javascripts/submitOptout.js"> </script>
 	<script src = "javascripts/optout.js"></script>
 	<script src = "javascripts/Sidebar-Navigation.js"></script>
