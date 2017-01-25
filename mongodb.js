@@ -176,8 +176,10 @@ dbFunctions.updateDocument = function(id, date, collectionName, callback){
     { $set : { "lastShift" : date } },
     function (err, res) {
       assert.equal(err, null);
-      assert.equal(1, result.result.n);
-      callback(res);
+      //assert.equal(1, res.res.n);
+      if(typeof callback === 'function') {
+        callback(res);
+      }
     });
 }
 
@@ -216,17 +218,35 @@ dbFunctions.algorithm = function(collectionName, callback){
 
         var selectedPeopleMap = {};
         var selectPersonPromiseList = [];
+        var selectIDPromiseList = [];
+        var idList = {};
 
         for (var i = 0; i < shifts.length; i++){
           var previousPromise = i > 0 ? selectPersonPromiseList[i-1] : new Promise(function(resolve, reject) { resolve(); });
           selectPersonPromiseList[i] = selectNextPerson(collection, shifts[i], selectedPeopleMap, previousPromise);
+          var previousIDPromise = i > 0 ? selectIDPromiseList[i-1] : new Promise(function(resolve, reject) { resolve(); });
+          selectIDPromiseList[i] = selectID(i, collection, shifts[i], idList, previousIDPromise);
         }
 
         selectPersonPromiseList[selectPersonPromiseList.length-1].then( function (){
           dbFunctions.insertDocuments(selectedPeopleMap, "Schedule");
           date = new Date();
-          console.log("id" + selectedPeopleMap.ATTU_ID);
-          // dbFunctions.updateDocument(selectedPeopleMap.ATTU_ID, date, "personRecord");
+          /*
+          dbFunctions.updateDocument(idList[0].ID, date, "personRecord");
+          dbFunctions.updateDocument(idList[1].ID, date, "personRecord");
+          dbFunctions.updateDocument(idList[2].ID, date, "personRecord");
+          dbFunctions.updateDocument(idList[3].ID, date, "personRecord");
+          dbFunctions.updateDocument(idList[4].ID, date, "personRecord");
+          dbFunctions.updateDocument(idList[5].ID, date, "personRecord");
+          dbFunctions.updateDocument(idList[6].ID, date, "personRecord");
+        
+          console.log(idList[0].ID);
+          console.log(idList[1].ID);
+          console.log(idList[2].ID);
+          console.log(idList[3].ID);
+          console.log(idList[4].ID);
+          console.log(idList[5].ID);
+          console.log(idList[6].ID);*/
         });
     });
 }
@@ -250,6 +270,33 @@ function selectNextPerson(collection, shift, selectedPeopleMap, previousPromise)
                 assert.equal(err, null);
                 if (docs && docs.length){
                   selectedPeopleMap[shift.value] = { ATTU_ID : docs[0].ATTU_ID, Name: docs[0].Name };
+                  resolve();
+
+                }
+              });
+    });          
+  });
+}
+
+function selectID(counter, collection, shift, idList, previousPromise){
+  return new Promise(function(resolve, reject) {
+    previousPromise.then(function() {
+      collection.aggregate([
+            { $lookup: {
+                  from: "personRecord",
+                  localField: "ATTU_ID",
+                  foreignField: "ATTU_ID",
+                  as: "record"
+                } 
+            },
+
+            { $match : { 'Available[]' : { $elemMatch : { $eq : shift.value } }, "record.ATTU_ID": { $nin : _.map(idList, 'ATTU_ID') } } },
+
+            { $sort : { "record.lastShift" : 1 } }
+              ]).toArray(function(err, docs){ 
+                assert.equal(err, null);
+                if (docs && docs.length){
+                  idList[counter] = { ID : docs[0].ATTU_ID };
                   resolve();
 
                 }
