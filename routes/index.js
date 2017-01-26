@@ -167,13 +167,5 @@ module.exports = function(passport){
 		});*/
 	});
 
-	router.post('/cancelSchedule', function(req, res, next){
-	console.log(req.body);
-
-	 mongoDbFunctions.cancelSchedule({date: req.body.date, setup: req.body.setup, eightthirty: req.body.eightthirty, nine: req.body.nine, ninethirty: req.body.ninethirty, ten: req.body.ten, cleanup1: req.body.cleanup1, cleanup2: req.body.cleanup2}, "Schedule", function(result) {
-
-	 })
-});
-
 	return router;
 }
