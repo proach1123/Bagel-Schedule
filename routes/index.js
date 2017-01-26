@@ -51,10 +51,20 @@ module.exports = function(passport){
 	});
 
 	router.post('/input', function(req, res, next){
-		console.log(req.body);
+		console.log(req.user);
+
+		function getCharsBefore(str, chr) {
+		    var index = str.indexOf(chr);
+		    if (index != -1) {
+		        return(str.substring(0, index));
+		    }
+		    return("");
+		}
+
+		var userID = getCharsBefore(req.user.email, "@")
 		
 		//Will take the inputed data and find if this person has ever been scheduled by checking personRecord
-		mongoDbFunctions.findDocuments({ Name: req.body.Name, ATTU_ID: req.body.ATTU_ID }, "personRecord", function(result) {
+		mongoDbFunctions.findDocuments({ Name: req.user.firstName+" "+req.user.lastName, ATTU_ID: userID }, "personRecord", function(result) {
 
 			//if it is not found in personRecord
 			if(!result.length) {
