@@ -105,7 +105,7 @@ dbFunctions.updateDocument = function(id, date, collectionName, callback){
 
 
 
-dbFunctions.algorithm = function(collectionName, callback){
+dbFunctions.algorithm = function(collectionName, date, callback){
     var collection = dbConnection.collection(collectionName);
 
     var shifts = [ { value : 'setup' }, { value : 'eightthirty' }, { value : 'nine' }, { value : 'ninethirty' }, { value : 'ten' }, { value : 'cleanup1' }, { value: 'cleanup2'}];
@@ -141,14 +141,16 @@ dbFunctions.algorithm = function(collectionName, callback){
 
         for (var i = 0; i < shifts.length; i++){
           var previousPromise = i > 0 ? selectPersonPromiseList[i-1] : new Promise(function(resolve, reject) { resolve(); });
-          selectPersonPromiseList[i] = selectNextPerson(collection, shifts[i], selectedPeopleMap, previousPromise);
+          selectPersonPromiseList[i] = selectNextPerson(collection, shifts[i], selectedPeopleMap, date, previousPromise);
           var previousIDPromise = i > 0 ? selectIDPromiseList[i-1] : new Promise(function(resolve, reject) { resolve(); });
           selectIDPromiseList[i] = selectID(i, collection, shifts[i], idList, previousIDPromise);
         }
 
         selectPersonPromiseList[selectPersonPromiseList.length-1].then( function (){
           dbFunctions.insertDocuments(selectedPeopleMap, "Schedule");
-          date = new Date();
+
+
+
           for (var k = 0; k < idList.length; k++){
             dbFunctions.updateDocument(idList[k], date, "personRecord");
           }
@@ -157,7 +159,7 @@ dbFunctions.algorithm = function(collectionName, callback){
     });
 }
 
-function selectNextPerson(collection, shift, selectedPeopleMap, previousPromise){
+function selectNextPerson(collection, shift, selectedPeopleMap, date, previousPromise){
   return new Promise(function(resolve, reject) {
     previousPromise.then(function() {
       collection.aggregate([
@@ -171,11 +173,13 @@ function selectNextPerson(collection, shift, selectedPeopleMap, previousPromise)
 
             { $match : { 'Available[]' : { $elemMatch : { $eq : shift.value } }, "record.ATTU_ID": { $nin : _.map(selectedPeopleMap, 'ATTU_ID') } } },
 
+            
             { $sort : { "record.lastShift" : 1 } }
               ]).toArray(function(err, docs){ 
                 assert.equal(err, null);
                 if (docs && docs.length){
                   selectedPeopleMap[shift.value] = { ATTU_ID : docs[0].ATTU_ID, Name: docs[0].Name };
+                  selectedPeopleMap["Date"] = date;
                   resolve();
 
                 }

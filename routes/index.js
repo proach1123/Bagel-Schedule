@@ -71,10 +71,53 @@ module.exports = function(passport){
 				//inserts into personRecord
 				mongoDbFunctions.insertDocuments(person, "personRecord");
 
-				//Algorithm stuff
-				mongoDbFunctions.algorithm("availability_Next");
+				var wednesdayArray = nextWed();
 
-				//mongoDbFunctions.aggregateDocuments(person, "availability_Next");
+				for (var k = 0; k < wednesdayArray.length; k++){
+
+					//Algorithm stuff
+					mongoDbFunctions.algorithm("availability_Next", wednesdayArray);
+				}
+
+				function nextWed(){
+				  var l = 0;
+				    var d = new Date();
+				    var year = d.getFullYear();
+				    var month = d.getMonth()+1;
+				    var wedarray=[];
+
+				    if(month==0||month==2||month==4||month==6||month==7||month==9||month==11){
+				      console.log("first");
+				      l=31;
+				    }
+
+				    else if(month!=1){
+				      l=30;
+				      console.log("second");
+				    }
+
+				    else if(year%4==0&&year%100==0&&year%1000!=0){
+				      l=29;
+				      console.log("leap");
+				    }
+
+				    else{
+				      l=28;
+				      console.log("not");
+				    }
+				    
+				    for (var i=0; i <= l; i++) {
+				    	console.log(i);
+				    	d = new Date(year, month, i, 0, 0, 0,0);
+				    	if (d.getDay() === 3){
+				    		wedarray.push(d);
+				    	}
+				    	
+    				}
+    				console.log(wedarray);
+				    return wedarray;
+
+				};
 			}
 	/*
 			//if it is found in personRecord
