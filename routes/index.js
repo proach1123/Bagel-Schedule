@@ -74,9 +74,10 @@ module.exports = function(passport){
 				var wednesdayArray = nextWed();
 
 				for (var k = 0; k < wednesdayArray.length; k++){
+					var date = wednesdayArray[k];
 
 					//Algorithm stuff
-					mongoDbFunctions.algorithm("availability_Next", wednesdayArray);
+					mongoDbFunctions.algorithm("availability_Next", date);
 				}
 
 				function nextWed(){

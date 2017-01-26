@@ -86,9 +86,7 @@ dbFunctions.findDate = function(data, collectionName, callback){
   });
 }
 
-//Update a document
-
-dbFunctions.updateDocument = function(id, date, collectionName, callback){
+dbFunctions.updateRecord = function(id, date, collectionName, callback){
   var collection = dbConnection.collection(collectionName);
   collection.updateOne({ "ATTU_ID" : id},
     { $set : { "lastShift" : date } },
@@ -100,10 +98,6 @@ dbFunctions.updateDocument = function(id, date, collectionName, callback){
       }
     });
 }
-
-//Algorithm for Schedule
-
-
 
 dbFunctions.algorithm = function(collectionName, date, callback){
     var collection = dbConnection.collection(collectionName);
@@ -140,10 +134,10 @@ dbFunctions.algorithm = function(collectionName, date, callback){
         var idList = [];
 
         for (var i = 0; i < shifts.length; i++){
-          var previousPromise = i > 0 ? selectPersonPromiseList[i-1] : new Promise(function(resolve, reject) { resolve(); });
-          selectPersonPromiseList[i] = selectNextPerson(collection, shifts[i], selectedPeopleMap, date, previousPromise);
           var previousIDPromise = i > 0 ? selectIDPromiseList[i-1] : new Promise(function(resolve, reject) { resolve(); });
           selectIDPromiseList[i] = selectID(i, collection, shifts[i], idList, previousIDPromise);
+          var previousPromise = i > 0 ? selectPersonPromiseList[i-1] : new Promise(function(resolve, reject) { resolve(); });
+          selectPersonPromiseList[i] = selectNextPerson(i, collection, shifts[i], selectedPeopleMap, idList, date, previousPromise); 
         }
 
         selectPersonPromiseList[selectPersonPromiseList.length-1].then( function (){
@@ -151,15 +145,13 @@ dbFunctions.algorithm = function(collectionName, date, callback){
 
 
 
-          for (var k = 0; k < idList.length; k++){
-            dbFunctions.updateDocument(idList[k], date, "personRecord");
-          }
+          
           console.log(idList);
         });
     });
 }
 
-function selectNextPerson(collection, shift, selectedPeopleMap, date, previousPromise){
+function selectNextPerson(count, collection, shift, selectedPeopleMap, idList, date, previousPromise){
   return new Promise(function(resolve, reject) {
     previousPromise.then(function() {
       collection.aggregate([
@@ -180,6 +172,7 @@ function selectNextPerson(collection, shift, selectedPeopleMap, date, previousPr
                 if (docs && docs.length){
                   selectedPeopleMap[shift.value] = { ATTU_ID : docs[0].ATTU_ID, Name: docs[0].Name };
                   selectedPeopleMap["Date"] = date;
+                  dbFunctions.updateRecord(idList[count], date, "personRecord");
                   resolve();
 
                 }
