@@ -81,69 +81,12 @@ module.exports = function(passport){
 				//inserts into personRecord
 				mongoDbFunctions.insertDocuments(person, "personRecord");
 
-				var wednesdayArray = nextWed();
-
-				for (var k = 0; k < wednesdayArray.length; k++){
-					var date = wednesdayArray[k];
-
-					//Algorithm stuff
-					mongoDbFunctions.algorithm("availability_Next", date);
-				}
-
-				function nextWed(){
-				  var l = 0;
-				    var d = new Date();
-				    var year = d.getFullYear();
-				    var month = d.getMonth()+1;
-				    var wedarray=[];
-
-				    if(month==0||month==2||month==4||month==6||month==7||month==9||month==11){
-				      l=31;
-				    }
-
-				    else if(month!=1){
-				      l=30;
-				    }
-
-				    else if(year%4==0&&year%100==0&&year%1000!=0){
-				      l=29;
-				    }
-
-				    else{
-				      l=28;
-				    }
-				    
-				    for (var i=0; i <= l; i++) {
-				    	console.log(i);
-				    	d = new Date(year, month, i, 0, 0, 0,0);
-				    	if (d.getDay() === 3){
-				    		wedarray.push(d);
-				    	}
-				    	
-    				}
-				    return wedarray;
-
-				};
+				
 			}
 
 			else {
 
 				mongoDbFunctions.updateAvailable(req.body, "availability_Next");
-
-				// 
-				/*
-				//finds the availability document for person in next month's availability 
-				mongoDbFunctions.findDocuments({Name: req.body.Name, ATTU_ID: req.body.ATTU_ID }, "availability_Next", function(result) {
-					if(result.length) {
-						console.log("I'm in the if statement");
-						result[0].Available = req.body.Available;
-						mongoDbFunctions.updateDocument(result[0], "availability_Next");
-					}
-					else {
-						console.log("I'm in the else statement")
-						mongoDbFunctions.insertDocuments(req.body, "availability_Next");
-					}
-				});*/
 					
 			}
 
@@ -153,13 +96,75 @@ module.exports = function(passport){
 	  res.render('output', { user: req.user });
 	});
 
+	router.post('/output', /*isauthenticated,*/ function(req, res, next){
+		if (req.body === true){
+			console.log(req.body);
+			var wednesdayArray = nextWed();
+
+			for (var k = 0; k < wednesdayArray.length; k++){
+					var date = wednesdayArray[k];
+
+					//Algorithm stuff
+					mongoDbFunctions.algorithm("availability_Next", date);
+				}
+
+			function nextWed(){
+			  var l = 0;
+			    var d = new Date();
+			    var year = d.getFullYear();
+			    var month = d.getMonth()+1;
+			    var wedarray=[];
+
+			    if(month==0||month==2||month==4||month==6||month==7||month==9||month==11){
+			      l=31;
+			    }
+
+			    else if(month!=1){
+			      l=30;
+			    }
+
+			    else if(year%4==0&&year%100==0&&year%1000!=0){
+			      l=29;
+			    }
+
+			    else{
+			      l=28;
+			    }
+			    
+			    for (var i=0; i <= l; i++) {
+			    	console.log(i);
+			    	d = new Date(year, month, i, 0, 0, 0,0);
+			    	if (d.getDay() === 3){
+			    		wedarray.push(d);
+			    	}
+			    	
+				}
+			    return wedarray;
+
+			};
+		}	
+	});
+
 	router.get('/optout', /*isAuthenticated,*/ function(req, res, next) {
 	  res.render('optout', { user: req.user });
 	});
 
 	router.post('/optout', function(req, res, next){
-		console.log(req.body);
-		//mongoDbFunctions.findDocuments(req.body, "schedule");
+		/*console.log(req.body);
+		var data = { Name: req.body.name, ATTU_ID: req.body.ATTU_ID, Date: req.body.date, };
+		mongoDbFunctions.findDocuments(data, "schedule", function (result){
+			if(result && result.length){
+				mongoDbFunctions.findDocuments(req.body.date, "Schedule", function (res){
+					var shifts = [ { value : 'setup' }, { value : 'eightthirty' }, { value : 'nine' }, { value : 'ninethirty' }, { value : 'ten' }, { value : 'cleanup1' }, { value: 'cleanup2'} ]
+					for (var k = 0; k<shifts.length; k++){
+						shifts[k].value = shift;
+						if(docs[0].shift !== req.body.Cancel){
+							shift: docs[0].shift;
+						}
+					}
+				});
+			}
+		});*/
 	});
 
 	router.post('/cancelSchedule', function(req, res, next){

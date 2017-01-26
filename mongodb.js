@@ -93,21 +93,6 @@ dbFunctions.updateAvailable = function(data, collectionName, callback){
   dbFunctions.deleteDocument(data.ATTU_ID, "availability_Next");
   dbFunctions.insertDocuments(data, "availability_Next");
 
-  /*
-  var updates = [];
-
-  collection.update({ "ATTU_ID" : data.ATTU_ID, "Name" : data.Name },
-    { $set: { "Available" : [] } },
-    function (err, result){
-      assert.equal(err, null);
-
-      updates.push(data.Available[0]);
-      console.log(updates);
-
-      if(typeof callback === 'function') {
-        callback(result);
-      }
-    });*/
 }
 
 dbFunctions.deleteDocument = function(data, collectionName, callback) {
