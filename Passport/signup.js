@@ -37,10 +37,15 @@ module.exports = function(passport){
                         newUser.lastName = req.body.lastName;
 
                         // save the user
-                        mongoDbFunctions.insertDocuments(newUser, "Users");
-                        console.log('User Registration succesful');    
-                        return done(null, newUser);
-                    
+                        newUser.save(function(err) {
+                            if (err){
+                                console.log('Error in Saving user: '+err);  
+                                throw err;  
+                            }
+                            console.log('User Registration succesful');
+                            mongoDbFunctions.insertDocuments(newUser, "Users");    
+                            return done(null, newUser);
+                        });
                     }
                 });
             };

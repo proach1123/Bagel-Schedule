@@ -21,7 +21,7 @@
     "q": "~1.4.1",
     "serve-favicon": "~2.3.0",
     "bcrypt-nodejs" : "*",
+    "lodash" : "~4.17.4",
     "connect-flash" : "*"
-    "lodash" : "~4.17.4"
   }
 }

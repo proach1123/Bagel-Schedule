@@ -1,19 +1,16 @@
 var LocalStrategy   = require('passport-local').Strategy;
 var User = require('../models/user');
-var mongoDbFunctions = require('../mongodb.js');
 var bCrypt = require('bcrypt-nodejs');
-var Users;
 
 module.exports = function(passport){
 
-	passport.use('login', new LocalStrategy({
+    passport.use('login', new LocalStrategy({
             usernameField: 'email', 
             passReqToCallback : true
         },
         function(req, email, password, done) { 
             // check in mongo if a user with username exists or not
-            Users = mongoDbFunctions.findCollections(User, "Users");
-            Users.findOne({ 'email' :  email }, 
+            User.findOne({ 'email' :  email }, 
                 function(err, user) {
                     // In case of any error, return using the done method
                     if (err)
@@ -36,7 +33,6 @@ module.exports = function(passport){
 
         })
     );
-
 
     var isValidPassword = function(user, password){
         return bCrypt.compareSync(password, user.password);

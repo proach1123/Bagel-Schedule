@@ -102,7 +102,7 @@ module.exports = function(passport){
 					
 			} */
 
-	}});
+	})});
 
 	router.get('/output', isAuthenticated, function(req, res, next) {
 	  res.render('output', { user: req.user });
