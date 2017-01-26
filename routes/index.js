@@ -42,11 +42,11 @@ module.exports = function(passport){
 	}));
 
 	/* GET home page. */
-	router.get('/', isAuthenticated, function(req, res){
+	router.get('/', /*isAuthenticated,*/ function(req, res){
 	  	res.render('homepage', { user: req.user });
 	});
 
-	router.get('/input', isAuthenticated, function(req, res, next) {
+	router.get('/input', /*isAuthenticated,*/ function(req, res, next) {
 	res.render('input', { user: req.user });
 	});
 
@@ -102,13 +102,13 @@ module.exports = function(passport){
 					
 			} */
 
-	}});
+	})});
 
-	router.get('/output', isAuthenticated, function(req, res, next) {
+	router.get('/output', /*isAuthenticated,*/ function(req, res, next) {
 	  res.render('output', { user: req.user });
 	});
 
-	router.get('/optout', isAuthenticated, function(req, res, next) {
+	router.get('/optout', /*isAuthenticated,*/ function(req, res, next) {
 	  res.render('optout', { user: req.user });
 	});
 

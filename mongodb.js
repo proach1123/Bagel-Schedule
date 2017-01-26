@@ -80,7 +80,7 @@ dbFunctions.updateDocument = function(id, date, collectionName, callback){
 dbFunctions.algorithm = function(collectionName, callback){
     var collection = dbConnection.collection(collectionName);
 
-    var shifts = [ { value : 'setup' }, { value : '8:30' }, { value : '9:00' }, { value : '9:30' }, { value : '10:00' }, { value : 'cleanup1' }, { value: 'cleanup2'}];
+    var shifts = [ { value : 'setup' }, { value : 'eightthirty' }, { value : 'nine' }, { value : 'ninethirty' }, { value : 'ten' }, { value : 'cleanup1' }, { value: 'cleanup2'}];
 
     //fixes asynchronous code so all counts are found
     Promise.all(shifts.map(function(shift) {
@@ -109,7 +109,7 @@ dbFunctions.algorithm = function(collectionName, callback){
         var selectedPeopleMap = {};
         var selectPersonPromiseList = [];
         var selectIDPromiseList = [];
-        var idList = {};
+        var idList = [];
 
         for (var i = 0; i < shifts.length; i++){
           var previousPromise = i > 0 ? selectPersonPromiseList[i-1] : new Promise(function(resolve, reject) { resolve(); });
@@ -121,22 +121,10 @@ dbFunctions.algorithm = function(collectionName, callback){
         selectPersonPromiseList[selectPersonPromiseList.length-1].then( function (){
           dbFunctions.insertDocuments(selectedPeopleMap, "Schedule");
           date = new Date();
-          /*
-          dbFunctions.updateDocument(idList[0].ID, date, "personRecord");
-          dbFunctions.updateDocument(idList[1].ID, date, "personRecord");
-          dbFunctions.updateDocument(idList[2].ID, date, "personRecord");
-          dbFunctions.updateDocument(idList[3].ID, date, "personRecord");
-          dbFunctions.updateDocument(idList[4].ID, date, "personRecord");
-          dbFunctions.updateDocument(idList[5].ID, date, "personRecord");
-          dbFunctions.updateDocument(idList[6].ID, date, "personRecord");
-        
-          console.log(idList[0].ID);
-          console.log(idList[1].ID);
-          console.log(idList[2].ID);
-          console.log(idList[3].ID);
-          console.log(idList[4].ID);
-          console.log(idList[5].ID);
-          console.log(idList[6].ID);*/
+          for (var k = 0; k < idList.length; k++){
+            dbFunctions.updateDocument(idList[k], date, "personRecord");
+          }
+          console.log(idList);
         });
     });
 }
@@ -181,13 +169,13 @@ function selectID(counter, collection, shift, idList, previousPromise){
                 } 
             },
 
-            { $match : { 'Available[]' : { $elemMatch : { $eq : shift.value } }, "record.ATTU_ID": { $nin : _.map(idList, 'ATTU_ID') } } },
+            { $match : { 'Available[]' : { $elemMatch : { $eq : shift.value } }, "record.ATTU_ID": { $nin : idList } } },
 
             { $sort : { "record.lastShift" : 1 } }
               ]).toArray(function(err, docs){ 
                 assert.equal(err, null);
                 if (docs && docs.length){
-                  idList[counter] = { ID : docs[0].ATTU_ID };
+                  idList[counter] = docs[0].ATTU_ID;
                   resolve();
 
                 }
