@@ -66,8 +66,10 @@ dbFunctions.updateDocument = function(id, date, collectionName, callback){
     { $set : { "lastShift" : date } },
     function (err, res) {
       assert.equal(err, null);
-      assert.equal(1, result.result.n);
-      callback(res);
+      //assert.equal(1, res.res.n);
+      if(typeof callback === 'function') {
+        callback(res);
+      }
     });
 }
 
@@ -78,7 +80,7 @@ dbFunctions.updateDocument = function(id, date, collectionName, callback){
 dbFunctions.algorithm = function(collectionName, callback){
     var collection = dbConnection.collection(collectionName);
 
-    var shifts = [ { value : 'setup' }, { value : '8:30' }, { value : '9:00' }, { value : '9:30' }, { value : '10:00' }, { value : 'cleanup1' }, { value: 'cleanup2'}];
+    var shifts = [ { value : 'setup' }, { value : 'eightthirty' }, { value : 'nine' }, { value : 'ninethirty' }, { value : 'ten' }, { value : 'cleanup1' }, { value: 'cleanup2'}];
 
     //fixes asynchronous code so all counts are found
     Promise.all(shifts.map(function(shift) {
@@ -106,17 +108,23 @@ dbFunctions.algorithm = function(collectionName, callback){
 
         var selectedPeopleMap = {};
         var selectPersonPromiseList = [];
+        var selectIDPromiseList = [];
+        var idList = [];
 
         for (var i = 0; i < shifts.length; i++){
           var previousPromise = i > 0 ? selectPersonPromiseList[i-1] : new Promise(function(resolve, reject) { resolve(); });
           selectPersonPromiseList[i] = selectNextPerson(collection, shifts[i], selectedPeopleMap, previousPromise);
+          var previousIDPromise = i > 0 ? selectIDPromiseList[i-1] : new Promise(function(resolve, reject) { resolve(); });
+          selectIDPromiseList[i] = selectID(i, collection, shifts[i], idList, previousIDPromise);
         }
 
         selectPersonPromiseList[selectPersonPromiseList.length-1].then( function (){
           dbFunctions.insertDocuments(selectedPeopleMap, "Schedule");
           date = new Date();
-          console.log("id" + selectedPeopleMap.ATTU_ID);
-          // dbFunctions.updateDocument(selectedPeopleMap.ATTU_ID, date, "personRecord");
+          for (var k = 0; k < idList.length; k++){
+            dbFunctions.updateDocument(idList[k], date, "personRecord");
+          }
+          console.log(idList);
         });
     });
 }
@@ -147,5 +155,34 @@ function selectNextPerson(collection, shift, selectedPeopleMap, previousPromise)
     });          
   });
 }
+
+
+function selectID(counter, collection, shift, idList, previousPromise){
+  return new Promise(function(resolve, reject) {
+    previousPromise.then(function() {
+      collection.aggregate([
+            { $lookup: {
+                  from: "personRecord",
+                  localField: "ATTU_ID",
+                  foreignField: "ATTU_ID",
+                  as: "record"
+                } 
+            },
+
+            { $match : { 'Available[]' : { $elemMatch : { $eq : shift.value } }, "record.ATTU_ID": { $nin : idList } } },
+
+            { $sort : { "record.lastShift" : 1 } }
+              ]).toArray(function(err, docs){ 
+                assert.equal(err, null);
+                if (docs && docs.length){
+                  idList[counter] = docs[0].ATTU_ID;
+                  resolve();
+
+                }
+              });
+    });          
+  });
+}
+
 
 module.exports = dbFunctions;
