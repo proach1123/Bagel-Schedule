@@ -53,13 +53,13 @@ function main(){
 		$.each($("input[name='day']:checked"), function (){
 			day.push($(this).val());
 		});
-
 		var data = { 
+			date: $("#date").val(), 
 			Name: $("#name").val(), 
 			ATTU_ID: $("#ATTUID").val(),
 			Cancel: day
 		};
 		console.log(data); 
-		$.post("/optout", data, function(){}, 'json');
+		$.post("/cancelSchedule", data, function(){}, 'json');
 	});
 }

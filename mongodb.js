@@ -57,6 +57,34 @@ dbFunctions.findDocuments = function(data, collectionName, callback){
   });
 }
 
+//Cancels Schedule
+dbFunctions.cancelSchedule = function(data, collectionName, callback){
+  var collection = dbConnection.collection(collectionName);
+  collection.updateOne({date: data.date},
+    {$set: data}, function(err, result) {
+      assert.equal(err, null);
+      // assert.equal(1, result.result.n);
+      if(typeof callback === 'function') {
+        callback(result);
+      }
+    });
+}
+
+//Finds Date for cancel shifts
+
+dbFunctions.findDate = function(data, collectionName, callback){
+  var collection = dbConnection.collection(collectionName);
+  collection.find({date: data.date}).toArray(function(err, docs){
+    assert.equal(err, null);
+    if(docs && docs.length){
+      dbFunctions.cancelSchedule(docs[0], 'Schedule');
+      console.log('running cancel shift');
+    }
+    else{
+      console.log('You werent even scheduled');
+    }
+  });
+}
 
 //Update a document
 
