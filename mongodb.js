@@ -56,7 +56,7 @@ dbFunctions.findDocuments = function(data, collectionName, callback){
     }
   });
 }
-
+/*
 //Cancels Schedule
 dbFunctions.cancelSchedule = function(data, collectionName, callback){
   var collection = dbConnection.collection(collectionName);
@@ -68,10 +68,10 @@ dbFunctions.cancelSchedule = function(data, collectionName, callback){
         callback(result);
       }
     });
-}
+}*/
 
 //Finds Date for cancel shifts
-
+/*
 dbFunctions.findDate = function(data, collectionName, callback){
   var collection = dbConnection.collection(collectionName);
   collection.find({date: data.date}).toArray(function(err, docs){
@@ -84,6 +84,20 @@ dbFunctions.findDate = function(data, collectionName, callback){
       console.log('You werent even scheduled');
     }
   });
+}
+*/
+
+dbFunctions.updateSchedule = function(date, cancel, collectionName, callback){
+  var collection = dbConnection.collection(collectionName);
+  collection.updateOne({ "Date" : date},
+    { $set : {cancel : { "ATTU-ID": null, "Name": null} } },
+    function (err, res) {
+      assert.equal(err, null);
+
+      if(typeof callback === 'function'){
+        callback(res);
+      }
+    });
 }
 
 dbFunctions.updateAvailable = function(data, collectionName, callback){

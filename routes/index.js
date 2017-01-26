@@ -97,7 +97,6 @@ module.exports = function(passport){
 	});
 
 	router.post('/output', /*isauthenticated,*/ function(req, res, next){
-		if (req.body === true){
 			console.log(req.body);
 			var wednesdayArray = nextWed();
 
@@ -141,8 +140,7 @@ module.exports = function(passport){
 				}
 			    return wedarray;
 
-			};
-		}	
+			};	
 	});
 
 	router.get('/optout', /*isAuthenticated,*/ function(req, res, next) {
@@ -150,21 +148,21 @@ module.exports = function(passport){
 	});
 
 	router.post('/optout', function(req, res, next){
-		/*console.log(req.body);
-		var data = { Name: req.body.name, ATTU_ID: req.body.ATTU_ID, Date: req.body.date, };
+		console.log(req.body);
+		var shifts = [ { value : 'setup' }, { value : 'eightthirty' }, { value : 'nine' }, { value : 'ninethirty' }, { value : 'ten' }, { value : 'cleanup1' }, { value: 'cleanup2'}];
+		var data = { Name: req.body.Name, ATTU_ID: req.body.ATTU_ID, Date: req.body.Cancel, };
 		mongoDbFunctions.findDocuments(data, "schedule", function (result){
 			if(result && result.length){
-				mongoDbFunctions.findDocuments(req.body.date, "Schedule", function (res){
-					var shifts = [ { value : 'setup' }, { value : 'eightthirty' }, { value : 'nine' }, { value : 'ninethirty' }, { value : 'ten' }, { value : 'cleanup1' }, { value: 'cleanup2'} ]
-					for (var k = 0; k<shifts.length; k++){
-						shifts[k].value = shift;
-						if(docs[0].shift !== req.body.Cancel){
-							shift: docs[0].shift;
-						}
+				for (var i = 0; i < shifts.length; i++){
+					var shift = shifts[i].value;
+					if(req.body.ATTU_ID === result[0].shift.ATTU_ID){
+						var cancelThis = shift;
+						mongoDbFunctions.updateSchedule(req.body.Cancel, cancelThis, "Schedule");	
 					}
-				});
+				}
+				
 			}
-		});*/
+		});
 	});
 
 	return router;
