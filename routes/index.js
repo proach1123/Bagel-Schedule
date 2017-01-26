@@ -88,23 +88,19 @@ module.exports = function(passport){
 				    var wedarray=[];
 
 				    if(month==0||month==2||month==4||month==6||month==7||month==9||month==11){
-				      console.log("first");
 				      l=31;
 				    }
 
 				    else if(month!=1){
 				      l=30;
-				      console.log("second");
 				    }
 
 				    else if(year%4==0&&year%100==0&&year%1000!=0){
 				      l=29;
-				      console.log("leap");
 				    }
 
 				    else{
 				      l=28;
-				      console.log("not");
 				    }
 				    
 				    for (var i=0; i <= l; i++) {
@@ -115,21 +111,16 @@ module.exports = function(passport){
 				    	}
 				    	
     				}
-    				console.log(wedarray);
 				    return wedarray;
 
 				};
 			}
-	/*
-			//if it is found in personRecord
+
 			else {
-				var adhere = {
-					Name: req.body.Name,
-					ATTU_ID: req.body.ATTU_ID
-				};
-				var availableShifts[] = req.body.Available[];
-				mongoDbFunctions.updateDocument(adhere, availableShifts, "availability_Next");
-				console.log("here");
+
+				mongoDbFunctions.updateAvailable(req.body, "availability_Next");
+
+				// 
 				/*
 				//finds the availability document for person in next month's availability 
 				mongoDbFunctions.findDocuments({Name: req.body.Name, ATTU_ID: req.body.ATTU_ID }, "availability_Next", function(result) {
@@ -142,9 +133,9 @@ module.exports = function(passport){
 						console.log("I'm in the else statement")
 						mongoDbFunctions.insertDocuments(req.body, "availability_Next");
 					}
-				});
+				});*/
 					
-			} */
+			}
 
 	})});
 

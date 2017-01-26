@@ -86,6 +86,44 @@ dbFunctions.findDate = function(data, collectionName, callback){
   });
 }
 
+dbFunctions.updateAvailable = function(data, collectionName, callback){
+  var collection = dbConnection.collection(collectionName);
+
+  var finder = { Name: data.Name, ATTU_ID: data.ATTU_ID }; 
+  dbFunctions.deleteDocument(data.ATTU_ID, "availability_Next");
+  dbFunctions.insertDocuments(data, "availability_Next");
+
+  /*
+  var updates = [];
+
+  collection.update({ "ATTU_ID" : data.ATTU_ID, "Name" : data.Name },
+    { $set: { "Available" : [] } },
+    function (err, result){
+      assert.equal(err, null);
+
+      updates.push(data.Available[0]);
+      console.log(updates);
+
+      if(typeof callback === 'function') {
+        callback(result);
+      }
+    });*/
+}
+
+dbFunctions.deleteDocument = function(data, collectionName, callback) {
+  // Get the documents collection 
+  var collection = dbConnection.collection(collectionName);
+  // Insert some documents 
+  collection.deleteOne({ ATTU_ID: data }, function(err, result) {
+    assert.equal(err, null);
+    
+    if(typeof callback === 'function') {
+      callback(result);
+    }
+  });
+}
+
+
 dbFunctions.updateRecord = function(id, date, collectionName, callback){
   var collection = dbConnection.collection(collectionName);
   collection.updateOne({ "ATTU_ID" : id},
@@ -125,6 +163,7 @@ dbFunctions.algorithm = function(collectionName, date, callback){
 
         //sorted shifts based on number of volunteers
         console.log(shifts);
+
         
         //WE'RE GOOD UP
 
@@ -142,11 +181,6 @@ dbFunctions.algorithm = function(collectionName, date, callback){
 
         selectPersonPromiseList[selectPersonPromiseList.length-1].then( function (){
           dbFunctions.insertDocuments(selectedPeopleMap, "Schedule");
-
-
-
-          
-          console.log(idList);
         });
     });
 }
