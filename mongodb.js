@@ -203,7 +203,7 @@ function selectNextPerson(count, collection, shift, selectedPeopleMap, idList, d
               ]).toArray(function(err, docs){ 
                 assert.equal(err, null);
                 if (docs && docs.length){
-                  selectedPeopleMap[shift.value] = { ATTU_ID : docs[0].ATTU_ID, Name: docs[0].Name };
+                  selectedPeopleMap[shift.value] = docs[0].ATTU_ID;
                   selectedPeopleMap["Date"] = date;
                   dbFunctions.updateRecord(idList[count], date, "personRecord");
                   resolve();
