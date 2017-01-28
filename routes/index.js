@@ -150,7 +150,8 @@ module.exports = function(passport){
 	router.post('/optout', function(req, res, next){
 		console.log(req.body);
 		var shifts = [ { value : 'setup' }, { value : 'eightthirty' }, { value : 'nine' }, { value : 'ninethirty' }, { value : 'ten' }, { value : 'cleanup1' }, { value: 'cleanup2'}];
-		var data = { Name: req.body.Name, ATTU_ID: req.body.ATTU_ID, Date: req.body.Cancel, };
+		var data = { "Date" : req.body.Cancel, };
+		console.log(data);
 		mongoDbFunctions.findDocuments(data, "schedule", function (result){
 			if(result && result.length){
 				for (var i = 0; i < shifts.length; i++){
