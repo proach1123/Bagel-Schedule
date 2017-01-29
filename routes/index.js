@@ -99,12 +99,13 @@ module.exports = function(passport){
 	router.post('/output', /*isauthenticated,*/ function(req, res, next){
 			console.log(req.body);
 			var wednesdayArray = nextWed();
+			var idList = [];
 
 			for (var k = 0; k < wednesdayArray.length; k++){
 					var date = wednesdayArray[k];
 
 					//Algorithm stuff
-					mongoDbFunctions.algorithm("availability_Next", date);
+					mongoDbFunctions.algorithm("availability_Next", date, idList);
 				}
 
 			function nextWed(){
