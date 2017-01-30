@@ -100,14 +100,15 @@ module.exports = function(passport){
 			console.log(req.body);
 			var wednesdayArray = nextWed();
 			var idList = [];
+			var promisedList = [];
 
 			for (var k = 0; k < wednesdayArray.length; k++){
-					var date = wednesdayArray[k];
+				var date = wednesdayArray[k];
 
-					//Algorithm stuff
-					mongoDbFunctions.algorithm("availability_Next", date, idList);
-				}
-
+				//Algorithm stuff
+				mongoDbFunctions.algorithm("availability_Next", date, idList);
+			}
+			
 			function nextWed(){
 			  var l = 0;
 			    var d = new Date();
@@ -132,7 +133,6 @@ module.exports = function(passport){
 			    }
 			    
 			    for (var i=0; i <= l; i++) {
-			    	console.log(i);
 			    	d = new Date(year, month, i, 0, 0, 0,0);
 			    	if (d.getDay() === 3){
 			    		wedarray.push(d);
