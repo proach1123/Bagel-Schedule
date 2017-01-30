@@ -74,12 +74,12 @@
 							<h5> Cancellation Date: </h5>
 
 							<label>
-								<input type = "checkbox"  name = "day" value = "day1"> <label class = 'date'> Wednesday 1 </label> <br>
-								<input type = "checkbox"  name = "day" value = "day2"> <label class = 'date'> Wednesday 2 </label> <br>
-								<input type = "checkbox"  name = "day" value = "day3"> <label class = 'date'> Wednesday 3 </label> <br>
-								<input type = "checkbox"  name = "day" value = "day4"> <label class = 'date'> Wednesday 4 </label> <br>
+								<input type = "radio"  id = "day1" name = "day" > <label class = 'date'> Wednesday 1 </label> <br>
+								<input type = "radio"  id = "day2" name = "day" > <label class = 'date'> Wednesday 2 </label> <br>
+								<input type = "radio"  id = "day3" name = "day" > <label class = 'date'> Wednesday 3 </label> <br>
+								<input type = "radio"  id = "day4" name = "day" > <label class = 'date'> Wednesday 4 </label> <br>
 								<div class = "date5">
-									<input type = "checkbox"  name = "day" value = "day5"> <label class = "date"> Wednesday 5 </label> <br>
+									<input type = "radio"  id = "day5" name = "day" > <label class = "date"> Wednesday 5 </label> <br>
 								</div>
 							</label>
 						</form>
@@ -87,43 +87,55 @@
 					<script>
 						var weds;
 						function Wednesdays(){
-						var l;
-						var d=new Date();
-						var m=["January","February","March","April","May","June","July","August","September","October","November","December"]
-						var month=d.getMonth();
-						var wedarray=[];
-						if(month==0||month==2||month==4||month==6||month==7||month==9||month==11){
-							l=31;
-						}
-						else if(month!=1){
-							l=30;
-						}
-						else if(year%4==0&&year%100==0&&year%1000!=0){
-							l=29;
-						}
-						else{
-							l=28;
-						}
-						for(var w=1;w<=l;w=w+1){
-				   			d.setDate(w);
-							if(d.getDay()==3){
-								console.log(d);
-				       			wedarray.push(m[d.getMonth()]+' '+d.getDate()+', '+d.getFullYear());
-				       		}
-						}
-						return wedarray;
-					}
+							var l = 0;
+						    var d = new Date();
+						    var year = d.getFullYear();
+						    var month = d.getMonth()+1;
+						    var wedarray=[];
+
+						    if(month==0||month==2||month==4||month==6||month==7||month==9||month==11){
+						      l=31;
+						    }
+
+						    else if(month!=1){
+						      l=30;
+						    }
+
+						    else if(year%4==0&&year%100==0&&year%1000!=0){
+						      l=29;
+						    }
+
+						    else{
+						      l=28;
+						    }
+						    
+						    for (var i=0; i <= l; i++) {
+						    	console.log(i);
+						    	d = new Date(year, month, i, 0, 0, 0, 0);
+						    	if (d.getDay() === 3){
+						    		wedarray.push(d);
+						    	}
+						    	
+							}
+						    return wedarray;
+
+						};
 					weds=Wednesdays();
-					document.getElementsByClassName("date")[0].innerHTML='Wednesday, '+weds[0];
-					document.getElementsByClassName("date")[1].innerHTML='Wednesday, '+weds[1];
-					document.getElementsByClassName("date")[2].innerHTML='Wednesday, '+weds[2];
-					document.getElementsByClassName("date")[3].innerHTML='Wednesday, '+weds[3];
+					document.getElementsByClassName("date")[0].innerHTML=weds[0];
+					$("#day1").val(weds[0]);
+					document.getElementsByClassName("date")[1].innerHTML=weds[1];
+					$("#day2").val(weds[1]);
+					document.getElementsByClassName("date")[2].innerHTML=weds[2];
+					$("#day3").val(weds[2]);
+					document.getElementsByClassName("date")[3].innerHTML=weds[3];
+					$("#day4").val(weds[3]);
 					if(weds[4]===undefined){
 						document.getElementsByClassName("date")[4].innerHTML='';
 						document.getElementsByClassName("date5")[0].innerHTML='';
 					}
 					else{
-						document.getElementsByClassName("date")[4].innerHTML='Wednesday, '+weds[4];
+						document.getElementsByClassName("date")[4].innerHTML=weds[4];
+						$("#day5").val(weds[4]);
 					}
 				</script>	
 			</div>

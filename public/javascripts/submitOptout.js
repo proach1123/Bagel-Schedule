@@ -49,17 +49,12 @@ function main(){
 	});*/
 
 	$('button[name="submit"]').click(function() {
-		var day = [];
-		$.each($("input[name='day']:checked"), function (){
-			day.push($(this).val());
-		});
-		var data = { 
-			date: $("#date").val(), 
+		var data = {  
 			Name: $("#name").val(), 
 			ATTU_ID: $("#ATTUID").val(),
-			Cancel: day
+			Cancel: $("input[name='day']:checked").val()
 		};
 		console.log(data); 
-		$.post("/cancelSchedule", data, function(){}, 'json');
+		$.post("/optout", data, function(){}, 'json');
 	});
 }
