@@ -158,13 +158,7 @@ dbFunctions.algorithm = function(collectionName, date, idList, callback){
         //sorts shifts based on number of volunteers
         shifts.sort(function (value1, value2){
             return value1.count - value2.count;
-        });
-
-        //sorted shifts based on number of volunteers
-        console.log(shifts);
-
-        
-        //WE'RE GOOD UP
+        });     
 
         var selectedPeopleMap = {};
         var selectPersonPromiseList = [];
@@ -185,56 +179,30 @@ function selectNextPerson(count, collection, shift, selectedPeopleMap, idList, d
   return new Promise(function(resolve, reject) {
     previousPromise.then(function() {
       collection.aggregate([
-            { $lookup: {
-                  from: "personRecord",
-                  localField: "ATTU_ID",
-                  foreignField: "ATTU_ID",
-                  as: "record"
-                } 
-            },
+        { $lookup: {
+          from: "personRecord",
+          localField: "ATTU_ID",
+          foreignField: "ATTU_ID",
+          as: "record"
+          } 
+        },
 
-            { $match : { 'Available[]' : { $elemMatch : { $eq : shift.value } }, "record.ATTU_ID": { $nin : idList } } },
+        { $match : { 'Available[]' : { $elemMatch : { $eq : shift.value } }, "record.ATTU_ID": { $nin : idList } } },
 
-            
-            { $sort : { "record.lastShift" : 1 } }
-              ]).toArray(function(err, docs){ 
-                assert.equal(err, null);
-                if (docs && docs.length){
-                  selectedPeopleMap[shift.value] = { ATTU_ID : docs[0].ATTU_ID, Name : docs[0].Name };
-                  selectedPeopleMap["Date"] = date;
-                  idList[count] = docs[0].ATTU_ID;
-                  dbFunctions.updateRecord(idList[count], date, "personRecord");
-                  resolve();
-                }
-                else {
-                  idList = [];
-                  collection.aggregate([
-                    { $lookup: {
-                      from: "personRecord",
-                      localField: "ATTU_ID",
-                      foreignField: "ATTU_ID",
-                      as: "record"
-                      } 
-                    },
+        { $sort : { "record.lastShift" : 1 } }
 
-                    { $match : { 'Available[]' : { $elemMatch : { $eq : shift.value } }, "record.ATTU_ID": { $nin : idList } } },
-
-            
-                    { $sort : { "record.lastShift" : 1 } }
-                  ]).toArray(function(err, docs){ 
-                    assert.equal(err, null);
-                    if (docs && docs.length){
-                      selectedPeopleMap[shift.value] = { ATTU_ID : docs[0].ATTU_ID, Name : docs[0].Name };
-                      selectedPeopleMap["Date"] = date;
-                      idList[count] = docs[0].ATTU_ID;
-                      dbFunctions.updateRecord(idList[count], date, "personRecord");
-                      resolve();
-                    }
-                  });
-                }
-              });
-              
-    });          
+      ]).toArray(function(err, docs){ 
+        assert.equal(err, null);
+        if (docs && docs.length){
+          selectedPeopleMap[shift.value] = { ATTU_ID : docs[0].ATTU_ID, Name: docs[0].Name };
+          selectedPeopleMap["Date"] = date;
+          idList[count] = docs[0].ATTU_ID;
+          console.log("first" + idList[count]);
+          dbFunctions.updateRecord(idList[count], date, "personRecord");
+          resolve();  
+        }          
+      });
+    });
   });
 }
 
