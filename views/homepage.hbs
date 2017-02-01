@@ -181,7 +181,7 @@
 						var l;
 						var d=new Date();
 						var m=["January","February","March","April","May","June","July","August","September","October","November","December"]
-						var month=d.getMonth();
+						var month=d.getMonth()+1;
 						var year=d.getFullYear();
 						var wedarray=[];
 						if(month==0||month==2||month==4||month==6||month==7||month==9||month==11){
@@ -196,6 +196,7 @@
 						else{
 							l=28;
 						}
+						// d.setMonth(d.getMonth());
 						for(var w=1;w<=l;w=w+1){
 				    		d.setDate(w);
 							if(d.getDay()==3){
